@@ -1,29 +1,34 @@
 import React, {useState, useEffect, useRef} from 'react';
 import logo from './logo.svg';
 import './App.css';
-// import liff from "liff";
+// import liff from windows.liff;
 // const { LineClient } = require("messaging-api-line");
 
 function App() {
   const [liff, setLiff] = useState("");
 
   useEffect(() => {
-    fetch("https://static.line-scdn.net/liff/edge/2.1/sdk.js").then(liff => setLiff(liff))
+    // console.log(window.liff)
+    // setLiff(window.liff);
+    // console.log("liffstoredddd", liff)
     initialize();
   },[])
 
-  useEffect(() => {
-    console.log("lifffff",liff);
-  }, [liff])
+  // useEffect(() => {
+  //   console.log("lifffff",liff);
+  // }, [liff])
 
   function initialize(){
     let myLiffId = "";
 
     fetch('/send-id')
             .then(function(reqResponse) {
+                console.log("reqResponse", reqResponse.body)
                 return reqResponse.json();
+                // return 
             })
             .then(function(jsonResponse) {
+              console.log("jsonresponseeee", jsonResponse);
                 myLiffId = jsonResponse.id;
                 initializeLiffOrDie(myLiffId);
             })
@@ -41,23 +46,10 @@ function App() {
     }
 }
 
-function initializeApp() {
-  // displayLiffData();
-  // displayIsInClientInfo();
-  // registerButtonHandlers();
-
-  // check if the user is logged in/out, and disable inappropriate button
-  if (liff.isLoggedIn()) {
-      document.getElementById('liffLoginButton').disabled = true;
-  } else {
-      document.getElementById('liffLogoutButton').disabled = true;
-  }
-}
-
 
 function initializeLiff(myLiffId) {
-  liff
-      .init({
+  console.log("myLIffidddd", myLiffId)
+  window.liff.init({
           liffId: myLiffId
       })
       .then(() => {
@@ -65,16 +57,29 @@ function initializeLiff(myLiffId) {
           initializeApp();
       })
       .catch((err) => {
-          document.getElementById("liffAppContent").classList.add('hidden');
-          document.getElementById("liffInitErrorMessage").classList.remove('hidden');
+        console.log(err);
+          // document.getElementById("liffAppContent").classList.add('hidden');
+          // document.getElementById("liffInitErrorMessage").classList.remove('hidden');
       });
 }
 
+function initializeApp() {
+  // displayLiffData();
+  // displayIsInClientInfo();
+  // registerButtonHandlers();
+
+  // check if the user is logged in/out, and disable inappropriate button
+  if (window.liff.isLoggedIn()) {
+      // document.getElementById('liffLoginButton').disabled = true;
+  } else {
+      // document.getElementById('liffLogoutButton').disabled = true;
+  }
+}
 
 function　loginClick() {
-  if (!liff.isLoggedIn()) {
+  if (!window.liff.isLoggedIn()) {
       // set `redirectUri` to redirect the user to a URL other than the front page of your LIFF app.
-      liff.login();
+      window.liff.login();
   }
 };
 
@@ -135,6 +140,7 @@ function　loginClick() {
             {/* <!-- LOGIN LOGOUT BUTTONS --> */}
             <div className="buttonGroup">
                 <button id="liffLoginButton" onClick={() => loginClick()}>Log in</button>
+                {/* <button id="liffLoginButton" >Log in</button> */}
                 <button id="liffLogoutButton">Log out</button>
             </div>
             <div id="statusMessage">
