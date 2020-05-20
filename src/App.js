@@ -15,7 +15,8 @@ function App() {
 
   function sendJoke() {
     getUserId();
-    fetch("/send-joke/:{userId}", { mode: "cors" }).then((res) =>
+    console.log("inside sendJoke", userId)
+    fetch(`/send-joke/:${userId}`, { mode: "cors" }).then((res) =>
       console.log(res)
     );
   }
@@ -98,7 +99,10 @@ function App() {
       .then((profile) => {
         const profileName = profile.displayName;
         setUserId(profile.userId);
-        console.log("userid stateeeeee========>", profileName, userId);
+        // setTimeout(() => {
+          console.log("app.js profile name, userid line103 ========>", profileName, userId);
+        // }, 3000)
+
       })
       .catch((err) => {
         console.log("error", err);
