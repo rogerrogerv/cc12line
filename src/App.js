@@ -86,7 +86,7 @@ function App() {
     if (!window.liff.isLoggedIn()) {
       console.log("loginClick -> window.liff.isLoggedIn()******", window.liff.isLoggedIn())
       // set `redirectUri` to redirect the user to a URL other than the front page of your LIFF app.
-
+      getUserId();
       //window.liff.login({ redirectUri: "http://localhost:3000" });
 
       window.liff.login();
