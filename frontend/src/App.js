@@ -1,21 +1,17 @@
 import React, { useState, useEffect, useRef } from "react";
 import logo from "./logo.svg";
 import "./App.css";
+require("dotenv").config();
 
 function App() {
-  const [liff, setLiff] = useState("");
-
-  // const client = LineClient.connect({
-  //   accessToken: process.env.ACCESS_TOKEN,
-  //   channelSecret: process.env.CHANNEL_SECRET,
-  // });
+  const [joke, setJoke] = useState("dad joke is not ready");
 
   useEffect(() => {
     initialize();
   }, []);
 
-  function sendMessages() {
-    fetch("http://localhost:9000/send-messages", { mode: "cors" }).then((res) =>
+  function sendJoke() {
+    fetch("http://localhost:9000/send-joke", { mode: "cors" }).then((res) =>
       console.log(res)
     );
   }
@@ -100,18 +96,39 @@ function App() {
       });
   }
 
+  // function generateJoke() {
+  //   fetch("https://dad-jokes.p.rapidapi.com/random/jokes", {
+  //     method: "GET",
+  //     headers: {
+  //       "x-rapidapi-host": "dad-jokes.p.rapidapi.com",
+  //       "x-rapidapi-key": "1c306d3386mshb1967e7c5f086f6p18a930jsncd5654c429dc",
+  //     },
+  //   })
+  //     .then((res) => {
+  //       return res.json();
+  //     })
+  //     .then((response) => {
+  //       console.log("dad joke ***********-->", response);
+  //       const setup = response.setup;
+  //       const punchline = response.punchline;
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }
+
   return (
     <div className="App">
       <div id="liffAppContent">
         {/* <!-- ACTION BUTTONS --> */}
         <div className="buttonGroup">
           <div className="buttonRow">
-            <button>TEST BUTTON</button>
+            {/* <button onClick={() => generateJoke()}>TEST BUTTON</button> */}
           </div>
           <div className="buttonRow">
             <button id="scanQrCodeButton">Open QR Code Reader</button>
-            <button id="sendMessageButton" onClick={() => sendMessages()}>
-              Send Message
+            <button id="sendMessageButton" onClick={() => sendJoke()}>
+              Send Joke
             </button>
           </div>
           <div className="buttonRow">
