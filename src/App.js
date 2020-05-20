@@ -18,8 +18,8 @@ function App() {
     getUserId();
     console.log("inside sendJoke", userId)
     
-    fetch(`/send-joke/?${userId}`, { mode: "cors", body: JSON.stringify({userId})}).then((res) =>
-      console.log(res)
+    fetch(`/send-joke/?${userId}`, { mode: "cors"}).then((res) =>
+      console.log("THIS IS A RESPONSE!!------>", res)
     );
   }
 

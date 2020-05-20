@@ -71,7 +71,7 @@ app.get("/send-id", function (req, res) {
 app.get("/send-joke", cors(), async function (req, res) {
   let joke = "";
 
-  let userId = req.body.userId;
+  let userId = req.query.userId;
 
   console.log("index.js line76 **** receiving userid", userId)
 
