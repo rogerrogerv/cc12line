@@ -1,25 +1,42 @@
 {
-  "name": "line-liff-v2-starter",
-  "version": "1.0.0",
-  "description": "This is a small web application that demonstrates the basic functionality of the [LINE Front-end Framework (LIFF)](https://developers.line.biz/en/docs/liff/overview/).",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/line/line-liff-v2-starter"
-  },
-  "license": "MIT",
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "proxy": "http://localhost:9000/",
   "dependencies": {
-    "cors": "^2.8.5",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
     "dotenv": "^8.2.0",
-    "express": "^4.17.1",
+    "liff": "^1.2.0",
     "messaging-api-line": "^0.8.5",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "3.4.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
     "path": "^0.12.7"
   },
-  "engines": {
-    "node": "10.x"
+  "scripts": {
+    "start": "react-scripts start",
+    "dev": "node index.js",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

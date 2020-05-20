@@ -10,16 +10,16 @@ const { LineClient } = require("messaging-api-line");
 
 console.log("WHERE IS A PORT???", port);
 
-app.use(express.static('frontend/build'));
+app.use(express.static('build'));
 
 // /app/frontend/build/index.html
 // app.get('*', (req, res) => {
 //   res.sendFile(path.join("/","app","frontend","build", "index.html"));
 // });
 
-app.get('*', (req, res) => {
-  res.sendFile(__dirname + "/frontend/build/index.html");
-});
+// app.get('*', (req, res) => {
+//   res.sendFile(__dirname + "/build/index.html");
+// });
 
 const client = LineClient.connect({
   accessToken: process.env.ACCESS_TOKEN,
@@ -27,6 +27,7 @@ const client = LineClient.connect({
 });
 
 app.get('/send-id', function(req, res) {
+    console.log("IS THIS COMING HERE???");
     res.json({id: myLiffId});
 });
 
