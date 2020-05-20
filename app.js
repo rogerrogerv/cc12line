@@ -16,7 +16,7 @@ client.multicast(
   [
     {
       type: 'text',
-      text: 'You have 9000 warnings.',
+      text: 'You have the final warning.',
     },
   ]
 );
