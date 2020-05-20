@@ -15,7 +15,7 @@ function App() {
   }, []);
 
   function sendJoke() {
-    fetch("http://localhost:9000/send-joke", { mode: "cors" }).then((res) =>
+    fetch("/send-joke", { mode: "cors" }).then((res) =>
       console.log(res)
     );
   }
@@ -105,7 +105,7 @@ function App() {
   }
 
   function getCovidStatus() {
-    fetch("http://localhost:9000/get-covid-status").then((err) =>
+    fetch("/get-covid-status").then((err) =>
       console.log(err)
     );
   }
