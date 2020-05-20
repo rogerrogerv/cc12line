@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
-import logo from "./logo.svg";
+import React, { useState, useEffect } from "react";
+// import logo from "./logo.svg";
 import "./App.css";
 require("dotenv").config();
 
@@ -19,7 +19,7 @@ function App() {
   function initialize() {
     let myLiffId = "";
 
-    fetch("/send-id")
+    fetch("http://localhost:9000/send-id")
       .then(function (reqResponse) {
         console.log("reqResponse", reqResponse.body);
         return reqResponse.json();
@@ -96,8 +96,8 @@ function App() {
       });
   }
 
-  function getIPAdress() {
-    fetch("http://localhost:9000/get-ip-address").then((err) =>
+  function getCovidStatus() {
+    fetch("http://localhost:9000/get-covid-status").then((err) =>
       console.log(err)
     );
   }
@@ -132,8 +132,8 @@ function App() {
             {/* <button onClick={() => generateJoke()}>TEST BUTTON</button> */}
           </div>
           <div className="buttonRow">
-            <button id="scanQrCodeButton" onClick={() => getIPAdress()}>
-              Get IP Address
+            <button id="scanQrCodeButton" onClick={() => getCovidStatus()}>
+              Get COVID Status
             </button>
             <button id="sendMessageButton" onClick={() => sendJoke()}>
               Send Joke
