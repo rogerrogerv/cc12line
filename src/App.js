@@ -137,7 +137,7 @@ function App() {
       </div>
       <div className={"add-assistant-section"}>
       <p>Use this QR code to add the assistant to your Line and wait for the messages!</p>
-      <img src="/ccline12_qrcode.png"></img>
+      <img src="/151tshrj.png"></img>
       <p>You will get a message every morning at 10:00 (JST/EST) (?)</p>
       <p>Maybe add a screenshot here of the line message</p>
       </div>
