@@ -202,10 +202,10 @@ function App() {
           </table>
         </div>
         {/* <!-- LOGIN LOGOUT BUTTONS --> */}
-        <div className="buttonGroup">
+        {/* <div className="buttonGroup">
           <button id="liffLoginButton" >Log in</button>
           <button id="liffLogoutButton">Log out</button>
-        </div>
+        </div> */}
         {/* <div id="statusMessage">
           <div id="isInClientMessage"></div>
           <div id="apiReferenceMessage">
