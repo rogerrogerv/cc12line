@@ -48,6 +48,10 @@ app.get("/get-covid-status", cors(), async function (req, res) {
     [
       {
         type: "text",
+        text: userId ,
+      },
+      {
+        type: "text",
         text: covidReport,
       },
     ]

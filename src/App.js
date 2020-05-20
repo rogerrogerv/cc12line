@@ -136,11 +136,14 @@ function App() {
       <h1>KYASR</h1>
       <p>Subcribe to our product to get COVID-19 stats and Dad Jokes delivered to your Line daily.</p>
       <p>Start by logging into your line account</p>
+      <button id="liffLoginButton" onClick={() => loginClick()}>
+            Log in
+          </button>
       </div>
         {/* <!-- ACTION BUTTONS --> */}
         <div className="buttonGroup">
           <div className="buttonRow">
-            <img src=""></img>
+            <img src="./ccline12_qrcode.png"></img>
           </div>
           <div className="buttonRow">
             <button id="scanQrCodeButton" onClick={() => getCovidStatus()}>
@@ -200,13 +203,10 @@ function App() {
         </div>
         {/* <!-- LOGIN LOGOUT BUTTONS --> */}
         <div className="buttonGroup">
-          <button id="liffLoginButton" onClick={() => loginClick()}>
-            Log in
-          </button>
-          {/* <button id="liffLoginButton" >Log in</button> */}
+          <button id="liffLoginButton" >Log in</button>
           <button id="liffLogoutButton">Log out</button>
         </div>
-        <div id="statusMessage">
+        {/* <div id="statusMessage">
           <div id="isInClientMessage"></div>
           <div id="apiReferenceMessage">
             <p>
@@ -221,7 +221,7 @@ function App() {
               for more information.
             </p>
           </div>
-        </div>
+        </div> */}
       </div>
       {/* <!-- LIFF ID ERROR --> */}
       <div id="liffIdErrorMessage" className="hidden">
