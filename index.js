@@ -8,9 +8,9 @@ const { LineClient } = require("messaging-api-line");
 
 app.use(express.static('./frontend/build'));
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join("/","app","frontend","build", "index.html"));
-});
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join("/","app","frontend","build", "index.html"));
+// });
 
 const client = LineClient.connect({
   accessToken: process.env.ACCESS_TOKEN,
