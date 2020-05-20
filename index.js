@@ -18,7 +18,7 @@ app.use(express.static('frontend/build'));
 // });
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join("/","frontend","build", "index.html"));
+  res.sendFile(path.join("frontend","build", "index.html"));
 });
 
 const client = LineClient.connect({
