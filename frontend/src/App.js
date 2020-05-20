@@ -1,22 +1,23 @@
 import React, {useState, useEffect, useRef} from 'react';
 import logo from './logo.svg';
 import './App.css';
-// import liff from windows.liff;
-// const { LineClient } = require("messaging-api-line");
+
 
 function App() {
   const [liff, setLiff] = useState("");
 
+  // const client = LineClient.connect({
+  //   accessToken: process.env.ACCESS_TOKEN,
+  //   channelSecret: process.env.CHANNEL_SECRET,
+  // });
+
   useEffect(() => {
-    // console.log(window.liff)
-    // setLiff(window.liff);
-    // console.log("liffstoredddd", liff)
     initialize();
   },[])
 
-  // useEffect(() => {
-  //   console.log("lifffff",liff);
-  // }, [liff])
+  function sendMessages(){
+    fetch("http://localhost:9000/send-messages", {mode: 'cors'}).then(res => console.log(res));
+  }
 
   function initialize(){
     let myLiffId = "";
@@ -25,7 +26,6 @@ function App() {
             .then(function(reqResponse) {
                 console.log("reqResponse", reqResponse.body)
                 return reqResponse.json();
-                // return 
             })
             .then(function(jsonResponse) {
               console.log("jsonresponseeee", jsonResponse);
@@ -85,9 +85,17 @@ function　loginClick() {
 
   return (
     <div className="App">
-       <div id="liffAppContent">
+      <div id="liffAppContent">
             {/* <!-- ACTION BUTTONS --> */}
             <div className="buttonGroup">
+                <div className="buttonRow">
+                    <button id="openWindowButton">Open External Window</button>
+                    <button id="closeWindowButton">Close LIFF App</button>
+                </div>
+                <div className="buttonRow">
+                    <button id="scanQrCodeButton">Open QR Code Reader</button>
+                    <button id="sendMessageButton" onClick={()=> sendMessages()}>Send Message</button>
+                </div>
                 <div className="buttonRow">
                     <button id="getAccessToken">Get Access Token</button>
                     <button id="getProfileButton">Get Profile</button>
@@ -97,7 +105,7 @@ function　loginClick() {
             {/* <!-- ACCESS TOKEN DATA --> */}
             <div id="accessTokenData" className="hidden textLeft">
                 <h2>Access Token</h2>
-                <a href="#" onclick="toggleAccessToken()">Close Access Token</a>
+                <a href="#">Close Access Token</a>
                 <table>
                     <tr>
                         <th>accessToken</th>
@@ -108,7 +116,7 @@ function　loginClick() {
             {/* <!-- SCAN QR RESULT --> */}
             <div id="scanQr" className="hidden textLeft">
                 <h2>QR Code reader</h2>
-                <a href="#" onclick="toggleQrCodeReader()">Close QR Code Reader Result</a>
+                <a href="#">Close QR Code Reader Result</a>
                 <table>
                     <tr>
                         <th>scanCode Result</th>
@@ -119,7 +127,7 @@ function　loginClick() {
             {/* <!-- PROFILE INFO --> */}
             <div id="profileInfo" className="hidden textLeft">
                 <h2>Profile</h2>
-                <a href="#" onclick="toggleProfileData()">Close Profile</a>
+                <a href="#">Close Profile</a>
                 <div id="profilePictureDiv">
                 </div>
                 <table>
