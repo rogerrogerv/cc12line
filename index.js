@@ -7,20 +7,7 @@ const myLiffId = process.env.MY_LIFF_ID;
 const { LineClient } = require("messaging-api-line");
 const axios = require("axios");
 
-// const path = require('path');
-
-console.log("WHERE IS A PORT???", port);
-
 app.use(express.static("build"));
-
-// /app/frontend/build/index.html
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join("/","app","frontend","build", "index.html"));
-// });
-
-// app.get('*', (req, res) => {
-//   res.sendFile(__dirname + "/build/index.html");
-// });
 
 const client = LineClient.connect({
   accessToken: process.env.ACCESS_TOKEN,
@@ -98,12 +85,12 @@ app.get("/send-joke", async function (req, res) {
 
   client.multicast(
     [
-      // process.env.USER_ID_Y,
+      process.env.USER_ID_Y,
       // process.env.USER_ID_S,
-      // process.env.USER_ID_K,
-      // process.env.USER_ID_A,
+      process.env.USER_ID_K,
+      process.env.USER_ID_A,
       // process.env.USER_ID_R,
-      userId
+      // userId
     ],
     [
       {
