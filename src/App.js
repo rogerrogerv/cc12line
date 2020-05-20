@@ -3,7 +3,7 @@ import logo from "./logo.svg";
 import "./App.css";
 
 function App() {
-  const [liff, setLiff] = useState("");
+  const [userId, setUserId] = useState("");
 
   // const client = LineClient.connect({
   //   accessToken: process.env.ACCESS_TOKEN,
@@ -88,6 +88,7 @@ function App() {
       //window.liff.login({ redirectUri: "http://localhost:3000" });
 
       window.liff.login();
+      getUserId();
     }
   }
 
@@ -96,8 +97,8 @@ function App() {
       .getProfile()
       .then((profile) => {
         const profileName = profile.displayName;
-        const id = profile.userId;
-        console.log(profileName, id);
+        setUserId(profile.userId);
+        console.log("userid stateeeeee", profileName, userId);
       })
       .catch((err) => {
         console.log("error", err);
