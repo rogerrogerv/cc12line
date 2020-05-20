@@ -17,7 +17,8 @@ function App() {
     getUserId();
     getUserId();
     console.log("inside sendJoke", userId)
-    fetch(`/send-joke`, { mode: "cors", body: JSON.stringify({userId})}).then((res) =>
+    
+    fetch(`/send-joke/?${userId}`, { mode: "cors", body: JSON.stringify({userId})}).then((res) =>
       console.log(res)
     );
   }
@@ -58,10 +59,14 @@ function App() {
     window.liff
       .init({
         liffId: myLiffId,
+
       })
       .then(() => {
         // start to use LIFF's api
         initializeApp();
+        const idToken = window.liff.getDecodedIDToken();
+        console.log("app.js line68 initializeLiff -> idToken*****", idToken);
+        
       })
       .catch((err) => {
         console.log(err);
