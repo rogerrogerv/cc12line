@@ -18,7 +18,7 @@ function App() {
     getUserId();
     console.log("inside sendJoke", userId)
 
-    fetch(`/send-joke/?${userId}`).then((res) =>
+    fetch(`/send-joke/?userId=${userId}`).then((res) =>
       console.log("THIS IS A RESPONSE!!------>", res)
     );
   }
