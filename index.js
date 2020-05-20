@@ -6,12 +6,18 @@ const cors = require("cors");
 const myLiffId = process.env.MY_LIFF_ID;
 const { LineClient } = require("messaging-api-line");
 const axios = require("axios");
+const ip = require("ip");
+// app.set("trust proxy", true);
 
 app.use(express.static("./frontend/build"));
 
 const client = LineClient.connect({
   accessToken: process.env.ACCESS_TOKEN,
   channelSecret: process.env.CHANNEL_SECRET,
+});
+
+app.get("/get-ip-address", function (req, res) {
+  console.log(ip.address());
 });
 
 app.get("/send-id", function (req, res) {

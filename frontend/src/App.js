@@ -96,6 +96,12 @@ function App() {
       });
   }
 
+  function getIPAdress() {
+    fetch("http://localhost:9000/get-ip-address").then((err) =>
+      console.log(err)
+    );
+  }
+
   // function generateJoke() {
   //   fetch("https://dad-jokes.p.rapidapi.com/random/jokes", {
   //     method: "GET",
@@ -126,7 +132,9 @@ function App() {
             {/* <button onClick={() => generateJoke()}>TEST BUTTON</button> */}
           </div>
           <div className="buttonRow">
-            <button id="scanQrCodeButton">Open QR Code Reader</button>
+            <button id="scanQrCodeButton" onClick={() => getIPAdress()}>
+              Get IP Address
+            </button>
             <button id="sendMessageButton" onClick={() => sendJoke()}>
               Send Joke
             </button>
