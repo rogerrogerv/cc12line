@@ -8,10 +8,6 @@ function App() {
   useEffect(() => {
     initialize();
   }, []);
-  
-  // useEffect(() => {
-  //   console.log(userId);
-  // }, [userId]);
 
 
   function sendMessages() {
@@ -112,11 +108,10 @@ function App() {
 
   function sendJoke() {
     getUserId();
-    getUserId();
     console.log("inside sendJoke", userId)
 
-    fetch("/send-joke").then((res) =>
-      console.log("THIS IS A RESPONSE!!------>", JSON.stringify(res.data))
+    fetch(`/send-joke?userId=${userId}`).then((res) =>
+      console.log("THIS IS A RESPONSE FOR JOKES!!------>", JSON.stringify(res.data))
     );
   }
 
@@ -124,8 +119,8 @@ function App() {
   function getCovidStatus() {
     getUserId();
     console.log("inside CovidStatus", userId)
-    fetch(`/get-covid-status?userId=${userId}`).then((err) =>
-      console.log("THIS IS A ERROR FOR COVID!!------>", err)
+    fetch(`/get-covid-status?userId=${userId}`).then((res) =>
+      console.log("THIS IS A RESPONSE FOR COVID!!------>", res)
     );
   }
 
@@ -133,17 +128,22 @@ function App() {
     <div className="App">
       <div id="liffAppContent">
       <div className={"intro-section"}>
-      <h1>KYASR</h1>
+      <h1>SKYRA</h1>
       <p>Subcribe to our product to get COVID-19 stats and Dad Jokes delivered to your Line daily.</p>
       <p>Start by logging into your line account</p>
       <button id="liffLoginButton" onClick={() => loginClick()}>
             Log in
           </button>
       </div>
+      <div className={"add-assistant-section"}>
+      <p>Use this QR code to add the assistant to your Line and wait for the messages!</p>
+      <img src="ccline12_qrcode.png"></img>
+      <p>You will get a message every morning at 10:00 (JST/EST) (?)</p>
+      <p>Maybe add a screenshot here of the line message</p>
+      </div>
         {/* <!-- ACTION BUTTONS --> */}
         <div className="buttonGroup">
           <div className="buttonRow">
-            <img src="./ccline12_qrcode.png"></img>
           </div>
           <div className="buttonRow">
             <button id="scanQrCodeButton" onClick={() => getCovidStatus()}>

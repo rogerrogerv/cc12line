@@ -1,3 +1,20 @@
+.intro-section {
+  background-color: #EF9B90;
+  padding: 40px 30px;
+color: white;
+}
+
+.add-assistant-section {
+ background-color: white;
+}
+
+#liffLoginButton {
+ padding: 10px 30px;
+ background-color: #EF9B90;
+ border-radius: 25px;
+ border: 2px solid white;
+}
+
 .App {
   text-align: center;
 }
