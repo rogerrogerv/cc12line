@@ -16,7 +16,7 @@ function App() {
   },[])
 
   function sendMessages(){
-    fetch("http://localhost:9000/send-messages", {mode: 'cors'}).then(res => console.log(res));
+    fetch("/send-messages", {mode: 'cors'}).then(res => console.log(res));
   }
 
   function initialize(){
