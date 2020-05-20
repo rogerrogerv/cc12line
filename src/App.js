@@ -13,15 +13,6 @@ function App() {
   //   console.log(userId);
   // }, [userId]);
 
-  function sendJoke() {
-    getUserId();
-    getUserId();
-    console.log("inside sendJoke", userId)
-
-    fetch("/send-joke").then((res) =>
-      console.log("THIS IS A RESPONSE!!------>", JSON.stringify(res.data))
-    );
-  }
 
   function sendMessages() {
     fetch("/send-messages", { mode: "cors" }).then((res) => console.log(res));
@@ -119,9 +110,22 @@ function App() {
       });
   }
 
+  function sendJoke() {
+    getUserId();
+    getUserId();
+    console.log("inside sendJoke", userId)
+
+    fetch("/send-joke").then((res) =>
+      console.log("THIS IS A RESPONSE!!------>", JSON.stringify(res.data))
+    );
+  }
+
+
   function getCovidStatus() {
-    fetch("/get-covid-status").then((err) =>
-      console.log(err)
+    getUserId();
+    console.log("inside CovidStatus", userId)
+    fetch(`/get-covid-status?${userId}`).then((err) =>
+      console.log("THIS IS A ERROR FOR COVID!!------>", err)
     );
   }
 
@@ -131,7 +135,7 @@ function App() {
         {/* <!-- ACTION BUTTONS --> */}
         <div className="buttonGroup">
           <div className="buttonRow">
-            <img src="/ccline12_qrcode.png"></img>
+            <img src=""></img>
           </div>
           <div className="buttonRow">
             <button id="scanQrCodeButton" onClick={() => getCovidStatus()}>

@@ -15,6 +15,9 @@ const client = LineClient.connect({
 });
 
 app.get("/get-covid-status", cors(), async function (req, res) {
+  let userId = req.query.userId;
+
+  console.log("It's in covid index.js!!!", userId)
   let covidReport;
   await axios
     .get("https://covid-193.p.rapidapi.com/statistics?country=Japan", {
@@ -35,11 +38,12 @@ app.get("/get-covid-status", cors(), async function (req, res) {
 
   client.multicast(
     [
-      process.env.USER_ID_Y,
-      process.env.USER_ID_S,
-      process.env.USER_ID_K,
-      process.env.USER_ID_A,
-      process.env.USER_ID_R,
+      // process.env.USER_ID_Y,
+      // process.env.USER_ID_S,
+      // process.env.USER_ID_K,
+      // process.env.USER_ID_A,
+      // process.env.USER_ID_R,
+      userId
     ],
     [
       {
