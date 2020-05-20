@@ -19,7 +19,7 @@ function App() {
     console.log("inside sendJoke", userId)
 
     fetch(`/send-joke/?userId=${userId}`).then((res) =>
-      console.log("THIS IS A RESPONSE!!------>", res)
+      console.log("THIS IS A RESPONSE!!------>", JSON.stringify(res.data))
     );
   }
 
