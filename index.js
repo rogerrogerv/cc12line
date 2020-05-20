@@ -68,12 +68,12 @@ app.get("/send-id", function (req, res) {
   res.json({ id: myLiffId });
 });
 
-app.get("/send-joke/:userId", cors(), async function (req, res) {
+app.get("/send-joke/", cors(), async function (req, res) {
   let joke = "";
 
-  let userId = req.params.userId;
+  let userId = req.body.userId;
 
-  console.log("receiving userid", userId)
+  console.log("index.js line76 **** receiving userid", userId)
 
   await axios
     .get("https://dad-jokes.p.rapidapi.com/random/jokes", {
