@@ -55,7 +55,7 @@ app.get("/send-id", function (req, res) {
   res.json({ id: myLiffId });
 });
 
-app.get("/send-joke", async function (req, res) {
+app.get("/send-joke", cors(), async function (req, res) {
   let joke = "";
 
   let userId = req.query.userId;
