@@ -86,6 +86,18 @@ function　loginClick() {
   }
 };
 
+function getUserId() {
+    window.liff.getProfile()
+    .then(profile => {
+    const profileName = profile.displayName
+      const id = profile.userId
+      console.log(profileName, id)
+    })
+    .catch((err) => {
+      console.log('error', err);
+    });
+}
+
   return (
     <div className="App">
       <div id="liffAppContent">
