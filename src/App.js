@@ -9,12 +9,13 @@ function App() {
     initialize();
   }, []);
   
-  useEffect(() => {
-    console.log(userId);
-  }, [userId]);
+  // useEffect(() => {
+  //   console.log(userId);
+  // }, [userId]);
 
   function sendJoke() {
-    fetch("/send-joke", { mode: "cors" }).then((res) =>
+    getUserId();
+    fetch("/send-joke/:{userId}", { mode: "cors" }).then((res) =>
       console.log(res)
     );
   }
@@ -51,7 +52,7 @@ function App() {
   }
 
   function initializeLiff(myLiffId) {
-    console.log("myLIffidddd", myLiffId);
+    console.log("myLIffid--------->", myLiffId);
     window.liff
       .init({
         liffId: myLiffId,
@@ -88,7 +89,6 @@ function App() {
       //window.liff.login({ redirectUri: "http://localhost:3000" });
 
       window.liff.login();
-      getUserId();
     }
   }
 
@@ -98,7 +98,7 @@ function App() {
       .then((profile) => {
         const profileName = profile.displayName;
         setUserId(profile.userId);
-        console.log("userid stateeeeee", profileName, userId);
+        console.log("userid stateeeeee========>", profileName, userId);
       })
       .catch((err) => {
         console.log("error", err);

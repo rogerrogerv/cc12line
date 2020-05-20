@@ -64,12 +64,16 @@ app.get("/get-covid-status", cors(), async function (req, res) {
 });
 
 app.get("/send-id", function (req, res) {
-  console.log("IS THIS COMING HERE???");
+  console.log("index.js LINE 67 ***********");
   res.json({ id: myLiffId });
 });
 
-app.get("/send-joke", cors(), async function (req, res) {
+app.get("/send-joke/:userId", cors(), async function (req, res) {
   let joke = "";
+
+  let userId = req.params.userId;
+
+  console.log("receiving userid", userId)
 
   await axios
     .get("https://dad-jokes.p.rapidapi.com/random/jokes", {
@@ -83,7 +87,7 @@ app.get("/send-joke", cors(), async function (req, res) {
       return res.data;
     })
     .then((response) => {
-      console.log("dad joke ***********-->", response);
+      console.log("index.js LINE 90 await axios 2nd THEN *****", response);
       const setup = response.setup;
       const punchline = response.punchline;
       joke = `${setup}...${punchline}`;
@@ -94,11 +98,12 @@ app.get("/send-joke", cors(), async function (req, res) {
 
   client.multicast(
     [
-      process.env.USER_ID_Y,
-      process.env.USER_ID_S,
-      process.env.USER_ID_K,
-      process.env.USER_ID_A,
-      process.env.USER_ID_R,
+      // process.env.USER_ID_Y,
+      // process.env.USER_ID_S,
+      // process.env.USER_ID_K,
+      // process.env.USER_ID_A,
+      // process.env.USER_ID_R,
+      userId
     ],
     [
       {
