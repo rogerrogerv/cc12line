@@ -6,7 +6,11 @@ const cors = require('cors');
 const myLiffId = process.env.MY_LIFF_ID;
 const { LineClient } = require("messaging-api-line");
 
-app.use(express.static('./frontend/build'));
+app.use(express.static('build'));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join("/", "app","build", "index.html"));
+});
 
 const client = LineClient.connect({
   accessToken: process.env.ACCESS_TOKEN,
