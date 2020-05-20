@@ -17,8 +17,8 @@ function App() {
     getUserId();
     getUserId();
     console.log("inside sendJoke", userId)
-    
-    fetch(`/send-joke/?${userId}`, { mode: "cors"}).then((res) =>
+
+    fetch(`/send-joke/?${userId}`).then((res) =>
       console.log("THIS IS A RESPONSE!!------>", res)
     );
   }
@@ -131,7 +131,7 @@ function App() {
         {/* <!-- ACTION BUTTONS --> */}
         <div className="buttonGroup">
           <div className="buttonRow">
-            {/* <button onClick={() => generateJoke()}>TEST BUTTON</button> */}
+            <img src="/ccline12_qrcode.png"></img>
           </div>
           <div className="buttonRow">
             <button id="scanQrCodeButton" onClick={() => getCovidStatus()}>
