@@ -6,10 +6,10 @@ const cors = require('cors');
 const myLiffId = process.env.MY_LIFF_ID;
 const { LineClient } = require("messaging-api-line");
 
-app.use(express.static('build'));
+app.use(express.static('./frontend/build'));
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join("/", "app","build", "index.html"));
+  res.sendFile(path.join("/", "frontend","app","build", "index.html"));
 });
 
 const client = LineClient.connect({
@@ -22,6 +22,7 @@ app.get('/send-id', function(req, res) {
 });
 
 app.get('/send-messages',cors(), function(req, res) {
+    console.log("IS IT SENDING MESSAGES???");
     client.multicast(
       [process.env.USER_ID_Y, process.env.USER_ID_S, process.env.USER_ID_K, process.env.USER_ID_A, process.env.USER_ID_R],
       [
