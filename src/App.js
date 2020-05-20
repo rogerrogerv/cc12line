@@ -5,14 +5,13 @@ import "./App.css";
 function App() {
   const [userId, setUserId] = useState("");
 
-  // const client = LineClient.connect({
-  //   accessToken: process.env.ACCESS_TOKEN,
-  //   channelSecret: process.env.CHANNEL_SECRET,
-  // });
-
   useEffect(() => {
     initialize();
   }, []);
+  
+  useEffect(() => {
+    console.log(userId);
+  }, [userId]);
 
   function sendJoke() {
     fetch("/send-joke", { mode: "cors" }).then((res) =>
@@ -83,6 +82,7 @@ function App() {
 
   function loginClick() {
     if (!window.liff.isLoggedIn()) {
+      console.log("loginClick -> window.liff.isLoggedIn()******", window.liff.isLoggedIn())
       // set `redirectUri` to redirect the user to a URL other than the front page of your LIFF app.
 
       //window.liff.login({ redirectUri: "http://localhost:3000" });
