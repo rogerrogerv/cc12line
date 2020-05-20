@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import logo from "./logo.svg";
 import "./App.css";
+import icon from "./img/icon.png";
 
 function App() {
   const [userId, setUserId] = useState("");
@@ -128,16 +129,17 @@ function App() {
     <div className="App">
       <div id="liffAppContent">
       <div className={"intro-section"}>
-      <h1>SKYRA</h1>
+      <p id="title">SKYRA</p>
+      <img id="icon" src={icon}></img>
       <p>Subcribe to our product to get COVID-19 stats and Dad Jokes delivered to your Line daily.</p>
       <p>Start by logging into your line account</p>
-      <button id="liffLoginButton" onClick={() => loginClick()}>
+      <button className="liffLoginButton" onClick={() => loginClick()}>
             Log in
           </button>
       </div>
       <div className={"add-assistant-section"}>
       <p>Use this QR code to add the assistant to your Line and wait for the messages!</p>
-      <img src="/151tshrj.png"></img>
+      <img id="qrcode" src="/151tshrj.png"></img>
       <p>You will get a message every morning at 10:00 (JST/EST) (?)</p>
       <p>Maybe add a screenshot here of the line message</p>
       </div>
@@ -146,18 +148,19 @@ function App() {
           <div className="buttonRow">
           </div>
           <div className="buttonRow">
-            <button id="scanQrCodeButton" onClick={() => getCovidStatus()}>
+            <button id="scanQrCodeButton" className="liffLoginButton" onClick={() => getCovidStatus()}>
               Get COVID Status
             </button>
-            <button id="sendMessageButton" onClick={() => sendJoke()}>
+            <button id="sendMessageButton" className="liffLoginButton" onClick={() => sendJoke()}>
               Send Joke
             </button>
           </div>
           <div className="buttonRow">
-            <button id="getAccessToken">Get Access Token</button>
-            <button id="getProfileButton">Get Profile</button>
+            <button id="getAccessToken" className="liffLoginButton">Get Access Token</button>
+            <button id="getProfileButton" className="liffLoginButton">Get Profile</button>
           </div>
         </div>
+        <div id="hooter">© SKYRA 2020. All rights reserved.</div>
         <div id="shareTargetPickerMessage"></div>
         {/* <!-- ACCESS TOKEN DATA --> */}
         <div id="accessTokenData" className="hidden textLeft">

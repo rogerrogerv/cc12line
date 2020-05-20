@@ -1,18 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@600&display=swap');
+
+
 .intro-section {
   background-color: #EF9B90;
   padding: 40px 30px;
-color: white;
+  color: white;
+  font-size: 1.3em;
+  font-weight: bold;
 }
 
 .add-assistant-section {
  background-color: white;
 }
 
-#liffLoginButton {
+.liffLoginButton {
  padding: 10px 30px;
  background-color: #EF9B90;
  border-radius: 25px;
  border: 2px solid white;
+ color: white;
+ font-size: 1.3em;
+ font-weight: bold;
+}
+
+.liffLoginButton:hover {
+  background-color: #fff;
+  border-color: #59b1eb;
+  color: #59b1eb;
+  cursor: pointer;
 }
 
 .App {
@@ -122,4 +137,36 @@ button {
 
 .hidden {
   display: none;
+}
+
+#qrcode {
+  height: 250px;
+}
+
+img {
+  margin-bottom: 20px;
+}
+
+#title {
+  font-size: 4em;
+  font-family: 'Baloo Chettan 2', cursive;
+  margin-left: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  width: 100px;
+}
+
+p {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+#hooter {
+  background-color: black;
+  margin-top: 50px;
+  padding-top: 10px;
+  color: white;
+  font-size: 1.6em;
+  height: 30px;
+  text-align: center;
 }
