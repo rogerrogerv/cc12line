@@ -2,8 +2,15 @@ import React, { useState, useEffect, useRef } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import icon from "./img/icon.png";
+import horoscope from "./horoscope"
 
 function App() {
+
+  //To Do: properly hook up horoscope component line:165
+  let sign="virgo"
+  let day="today"
+  // ^^ the above is for the horoscope component line:165
+
   const [userId, setUserId] = useState("");
 
   useEffect(() => {
@@ -155,6 +162,8 @@ function App() {
               Send Joke
             </button>
           </div>
+          <p>How about your Horoscope?</p>
+          <horoscope sign={sign} day={day}/>
           <div className="buttonRow">
             <button id="getAccessToken" className="liffLoginButton">Get Access Token</button>
             <button id="getProfileButton" className="liffLoginButton">Get Profile</button>
