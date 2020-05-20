@@ -124,7 +124,7 @@ function App() {
   function getCovidStatus() {
     getUserId();
     console.log("inside CovidStatus", userId)
-    fetch(`/get-covid-status?${userId}`).then((err) =>
+    fetch(`/get-covid-status?userId=${userId}`).then((err) =>
       console.log("THIS IS A ERROR FOR COVID!!------>", err)
     );
   }
@@ -132,6 +132,11 @@ function App() {
   return (
     <div className="App">
       <div id="liffAppContent">
+      <div className={"intro-section"}>
+      <h1>KYASR</h1>
+      <p>Subcribe to our product to get COVID-19 stats and Dad Jokes delivered to your Line daily.</p>
+      <p>Start by logging into your line account</p>
+      </div>
         {/* <!-- ACTION BUTTONS --> */}
         <div className="buttonGroup">
           <div className="buttonRow">
