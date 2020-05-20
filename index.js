@@ -6,7 +6,7 @@ const cors = require('cors');
 const myLiffId = process.env.MY_LIFF_ID;
 const { LineClient } = require("messaging-api-line");
 
-const path = require('path');
+// const path = require('path');
 
 console.log("WHERE IS A PORT???", port);
 
@@ -18,7 +18,7 @@ app.use(express.static('frontend/build'));
 // });
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join("frontend","build", "index.html"));
+  res.sendFile(__dirname + "/frontend/build/index.html");
 });
 
 const client = LineClient.connect({
