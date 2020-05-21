@@ -1,3 +1,4 @@
+<body style="background-color:#434c5e;">
 <p align="center">
   <a href="" rel="noopener">
  <img width=500px height=px src="./src/img/logo_black.png" alt="CC logo"></a>
@@ -106,7 +107,7 @@ which can be obtained by creating a developers account for developing, and follo
 ## 💻 Contributors / Acknowledgments <a name = "contributors"></a>
 
 - [Shuntaro](https://github.com/maegatro) - Tech Lead
-- [Kokhki](https://github.com/Saggitarie)
+- [Kohki](https://github.com/Saggitarie)
 - [Yurika](https://github.com/yurikanamba)
 - [Aizhan](https://github.com/aizhanti)
 - [Roger](https://github.com/rogerrogerv)
