@@ -131,7 +131,8 @@ app.get("/fortune", cors(), async function(req, res) {
   const mood = data.mood;
   const description = data.description;
 
-  let fortune = `Your fortune for ${curDate} is as follows: Your lucky number is ${luckyNum}, lucky time is ${luckyTime} and lucky colour is ${colour}. ${description} and don't forget to be ${mood}.`
+  let fortune = `Your fortune for ${curDate} is as follows: Your lucky number is ${luckyNum}, lucky time is ${luckyTime} and lucky colour is ${colour}.
+    ${description} and don't forget to be ${mood}.`
 
 
   client.multicast(
@@ -174,42 +175,64 @@ app.get("/send-messages", cors(), function (req, res) {
 });
 
 app.get("/news", cors(), async function (req, res) {
-  let news = "";
   let userId = req.query.userId;
 
   var url = 'http://newsapi.org/v2/top-headlines?' +
           'sources=bbc-news&' +
           'apiKey=ba6018a0c29b4508be8a24c16e933a85';
 
+  let title1, description1, url1, title2, description2, url2,
+    title3, description3, url3;
+
   await axios
     .get(url)
     .then((res) => {
-      console.log(res.data)
       return res.data;
     })
     .then((response) => {
-      console.log("index.js LINE 190 await axios 2nd THEN *****", response);
+      title1 = response.articles[9].title;
+      description1 = response.articles[9].description;
+      url1 = response.articles[9].url;
+      title2 = response.articles[2].title;
+      description2 = response.articles[2].description;
+      url2 = response.articles[2].url;
+      title3 = response.articles[3].title;
+      description3 = response.articles[3].description;
+      url3 = response.articles[3].url;
     })
     .catch((err) => {
       console.error(err);
     });
 
-  // client.multicast(
-  //   [
-  //     // process.env.USER_ID_Y,
-  //     // // process.env.USER_ID_S,
-  //     // process.env.USER_ID_K,
-  //     // process.env.USER_ID_A,
-  //     // // process.env.USER_ID_R,
-  //     userId
-  //   ],
-  //   [
-  //     {
-  //       type: "text",
-  //       text: `${userId}, check this out: ${joke}`,
-  //     },
-  //   ]
-  // );
+    let news = `${title1}
+    ${description1}
+    ${url1}
+    
+    ${title2}
+    ${description2}
+    ${url2}
+  
+    ${title3}
+    ${description3}
+    ${url3}
+    `;
+
+  client.multicast(
+    [
+      // process.env.USER_ID_Y,
+      // // process.env.USER_ID_S,
+      // process.env.USER_ID_K,
+      // process.env.USER_ID_A,
+      // // process.env.USER_ID_R,
+      userId
+    ],
+    [
+      {
+        type: "text",
+        text: news
+      },
+    ]
+  );
   res.json("success");
 });
 
