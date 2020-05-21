@@ -184,21 +184,31 @@ app.get("/news", cors(), async function (req, res) {
   let title1, description1, url1, title2, description2, url2,
     title3, description3, url3;
 
+  function luckyNumber() {
+    let min = Math.ceil(0);
+    let max = Math.floor(9);
+    return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
+  }
+
+  let lucky1 = luckyNumber();
+  let lucky2 = luckyNumber();
+  let lucky3 = luckyNumber();
+
   await axios
     .get(url)
     .then((res) => {
       return res.data;
     })
     .then((response) => {
-      title1 = response.articles[9].title;
-      description1 = response.articles[9].description;
-      url1 = response.articles[9].url;
-      title2 = response.articles[2].title;
-      description2 = response.articles[2].description;
-      url2 = response.articles[2].url;
-      title3 = response.articles[3].title;
-      description3 = response.articles[3].description;
-      url3 = response.articles[3].url;
+      title1 = response.articles[lucky1].title;
+      description1 = response.articles[lucky1].description;
+      url1 = response.articles[lucky1].url;
+      title2 = response.articles[lucky2].title;
+      description2 = response.articles[lucky2].description;
+      url2 = response.articles[lucky2].url;
+      title3 = response.articles[lucky3].title;
+      description3 = response.articles[lucky3].description;
+      url3 = response.articles[lucky3].url;
     })
     .catch((err) => {
       console.error(err);
