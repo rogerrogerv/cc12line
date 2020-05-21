@@ -98,8 +98,6 @@ function App() {
       <button id="getProfileButton" className="liffLoginButton">Get Profile</button>
       </div> */}
       </>)
-      } else {
-       return  <h1>please login first</h1>
       }
     }
     // } else {
@@ -227,26 +225,28 @@ function App() {
   return (
     <div className="App">
       <div id="liffAppContent">
-      <div className={"intro-section"}>
-      <p id="title">SKYRA</p>
-      <img id="icon" src={icon}></img>
-      <p>Subcribe to SKYRA to get COVID-19 stats, Dad Jokes, Fortunes and more delivered to your Line daily.</p>
-      <p>Start by logging into your line account</p>
-      <button className="liffLoginButton" onClick={() => loginClick()}>
-            Log in
-          </button>
+      <div className="intro-section">
+        <div className="title-wrapper">
+        <p id="title">SKYRA</p>
+        </div>
+        <img id="icon" src={icon}></img>
+        <p className="marketInfo">Subcribe to SKYRA to get COVID-19 stats, Dad Jokes, Fortunes and more delivered to your Line daily.</p>
+        <p className="marketInfo">Start by logging into your line account</p>
+        <button className="liffLoginButton" onClick={() => loginClick()}>
+              Log in
+        </button>
       </div>
       <div className={"add-assistant-section"}>
-      <p>Use this QR code to add SKYRA to your Line and wait for the messages!</p>
-      <img id="qrcode" src={phone}></img>
-      <img id="qrcode" src="/151tshrj.png"></img>
-      <p>You will get a message every morning at 10:00(JST)</p>
+      <p className="market-subInfo">Use this QR code to add SKYRA to your Line and wait for the messages!</p>
+      <img className="phone_pic" alt="phone_pic" src={phone}></img>
+      <img className="qrcode" alt="qrcode_pic" src="/151tshrj.png"></img>
+      <p className="market-subInfo">You will get a message every morning at 10:00(JST)</p>
       </div>
         {/* <!-- ACTION BUTTONS --> */}
         <div className="buttonGroup">
           {/* <div className="buttonRow">
           </div> */}
-          <Buttons />
+          {/* <Buttons /> */}
           {/* <div className="buttonRow"></div>
             <button id="scanQrCodeButton" className="liffLoginButton" onClick={() => sendCovidStatus()}>
               Get COVID Status

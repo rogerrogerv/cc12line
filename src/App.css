@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap');
 
 .intro-section {
+  position: relative;
   background-color: #EF9B90;
   padding: 40px 30px;
   color: white;
@@ -31,45 +32,6 @@
   cursor: pointer;
 }
 
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 html {
   font-size: 11px;
 }
@@ -93,9 +55,9 @@ table, th, td {
   border: 1px solid black;
 }
 
-img { 
-  max-width: 25%; 
-  height: auto; 
+img {
+  max-width: 25%;
+  height: auto;
 }
 
 button {
@@ -140,8 +102,13 @@ button {
   display: none;
 }
 
-#qrcode {
-  height: 250px;
+.phone_pic{
+  width: 13%;
+}
+
+.qrcode {
+  width: 18%;
+  transform: translateY(-10%);
 }
 
 img {
@@ -170,4 +137,64 @@ p {
   font-size: 1.6em;
   height: 30px;
   text-align: center;
+}
+
+/* Big table to 1200px(width smaller than the 1140px row */
+@media only screen and (max-width: 1200px){
+
+}
+
+/*Small tablet to big tablet from: 768px - 1023px*/
+
+@media only screen and (max-width: 1023px){
+
+}
+
+/*Small phones to small tablet from: 481px - 767px*/
+
+@media only screen and (max-width: 767px){
+
+}
+
+/*Small phones from :0 - 480px*/
+
+@media only screen and (max-width: 480px){
+
+  #icon{
+    max-width: 40%;
+    /* margin-top: -10px; */
+    position: absolute;
+    top:5%;
+    right:32%;
+
+  }
+
+  .title-wrapper{
+    display: inline-block;
+    padding-top:70px;
+    padding-right:66px ;
+    /* text-align: center; */
+  }
+
+  .marketInfo{
+    font-size: 25px;
+  }
+  
+  .market-subInfo{
+    font-size: 18px;
+  }
+  #title {
+    font-size: 4em;
+    font-family: 'Baloo Chettan 2', cursive;
+    width: 100px;
+  }
+
+  .phone_pic{
+    width: 25%;
+  }
+  
+  .qrcode {
+    width: 25%;
+    transform: translate(10% ,-30%);
+  }
 }
