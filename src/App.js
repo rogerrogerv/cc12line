@@ -18,9 +18,11 @@ function App() {
   useEffect(() => {
     initialize();
 
+    setUserId(localStorage.getItem("profile").userId);
+
     setTimeout(() => {
       if(window.liff.isLoggedIn){
-        getUserId()
+        getUserId();
       }
     }, 10000)
 
@@ -65,9 +67,9 @@ function App() {
       .then(() => {
         // start to use LIFF's api
         initializeApp();
+
         const idToken = window.liff.getDecodedIDToken();
         console.log("app.js line68 initializeLiff -> idToken*****", idToken);
-        
       })
       .catch((err) => {
         console.log(err);
@@ -84,7 +86,7 @@ function App() {
     // check if the user is logged in/out, and disable inappropriate button
     if (window.liff.isLoggedIn()) {
       // document.getElementById('liffLoginButton').disabled = true;
-      function Button () {return ( 
+      function Button () {return (
         <>
         <div className="buttonRow">
         <button id="scanQrCodeButton" className="liffLoginButton" onClick={() => sendCovidStatus()}>
@@ -134,7 +136,7 @@ function App() {
       .getProfile()
       .then((profile) => {
         const profileName = profile.displayName;
-        setUserId(profile.userId);
+        localStorage.setItem("profile", profile)
         // setIsLoggedIn(window.liff.isLoggedIn());
         // setTimeout(() => {
         console.log("app.js profile name, userid line103 ========>", profileName, userId);
