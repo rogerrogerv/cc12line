@@ -6,7 +6,7 @@ import phone from "./img/phone_image.png";
 // import Horoscope from "./horoscope"
 
 function App() {
-  let myLiffId = "1654236980-8Pzx0pWj"
+  // let myLiffId = "1654236980-8Pzx0pWj"
 
   const [userId, setUserId] = useState("");
 
