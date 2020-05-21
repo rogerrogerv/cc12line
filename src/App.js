@@ -17,7 +17,12 @@ function App() {
 
   useEffect(() => {
     initialize();
-   // getUserId();
+    setTimeout(() => {
+      if(window.liff.isLoggedIn()){
+        getUserId();
+        getUserId();
+      }
+    }, 15000)
   }, []);
 
   useEffect(() => {
@@ -93,12 +98,10 @@ function App() {
 
     if (!window.liff.isLoggedIn()) {
       console.log("loginClick -> window.liff.isLoggedIn()******", window.liff.isLoggedIn())
-      // set `redirectUri` to redirect the user to a URL other than the front page of your LIFF app.
-      setIsLoggedIn(true);
+      // set `redirectUri` to redirect the user to a URL other than the front page of your LIFF app
       // window.liff.login({ redirectUri: "http://localhost:9000" });
       console.log("Before login*******")
       window.liff.login();
-      console.log("After login****")
     }
   }
 
@@ -107,9 +110,9 @@ function App() {
       .getProfile()
       .then((profile) => {
         const profileName = profile.displayName;
-        localStorage.setItem("profile", profile)
+        // localStorage.setItem("profile", profile)
         setIsLoggedIn(window.liff.isLoggedIn());
-        // setUserId(profile.userId);
+        setUserId(profile.userId);
         // setTimeout(() => {
           console.log("app.js profile name, userid line103 ========>", profileName, userId);
         // }, 3000)
@@ -138,7 +141,7 @@ function App() {
 
   function sendMessages() {
     getUserId();
-    fetch(`/send-messages?userId=${userId}`).then((res) => 
+    fetch(`/send-messages?userId=${userId}`).then((res) =>
     console.log("THIS IS A RESPONSE FOR MESSAGES!!------>", res));
   }
 
@@ -146,7 +149,7 @@ function App() {
     getUserId();
     console.log("inside sendJoke", userId)
 
-    fetch(`/joke?userId=${localStorage.getItem("profile").userId}`).then((res) =>
+    fetch(`/joke?userId=${userId}`).then((res) =>
       console.log("THIS IS A RESPONSE FOR JOKES!!------>", JSON.stringify(res.data))
     );
   }
@@ -155,7 +158,7 @@ function App() {
   function sendCovidStatus() {
     getUserId();
     console.log("inside CovidStatus", userId)
-    fetch(`/covid?userId=${localStorage.getItem("profile").userId}`).then((res) =>
+    fetch(`/covid?userId=${userId}`).then((res) =>
       console.log("THIS IS A RESPONSE FOR COVID!!------>", res)
     );
   }
@@ -163,7 +166,7 @@ function App() {
   function sendFortune() {
     getUserId();
     console.log("***inside sendFortune ****", userId);
-    fetch(`/fortune?userId=${localStorage.getItem("profile").userId}`).then((res) =>
+    fetch(`/fortune?userId=${userId}`).then((res) =>
       console.log("THIS IS A RESPONSE FOR fortune !!------>", res)
     );
   }
@@ -171,13 +174,10 @@ function App() {
 
   function sendNews () {
     getUserId();
-    fetch(`/news?userId=${localStorage.getItem("profile").userId}`).then((res) =>
+    fetch(`/news?userId=${userId}`).then((res) =>
     console.log("THIS IS A RESPONSE FOR news !!------>", res)
   );
   }
-
-
-  // let test = false;
 
   function Buttons() {
     if(window.liff.isLoggedIn()) {
