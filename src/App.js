@@ -18,9 +18,12 @@ function App() {
   useEffect(() => {
     initialize();
 
-    if(window.liff.isLoggedIn){
-      getUserId()
-    }
+    setTimeout(() => {
+      if(window.liff.isLoggedIn){
+        getUserId()
+      }
+    }, 10000)
+
   }, []);
 
 
