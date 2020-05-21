@@ -121,9 +121,9 @@ function App() {
       console.log("Before login*******")
       window.liff.login();
       console.log("After login****")
-      getUserId();
-      console.log("After login getuserID()******")
-      setIsLoggedIn(true);
+      // getUserId();
+      // console.log("After login getuserID()******")
+      // setIsLoggedIn(true);
     }
   }
 
@@ -133,9 +133,9 @@ function App() {
       .getProfile()
       .then((profile) => {
         const profileName = profile.displayName;
-        // localStorage.setItem("profile", profile)
+        localStorage.setItem("profile", profile)
         setIsLoggedIn(window.liff.isLoggedIn());
-        setUserId(profile.userId);
+        // setUserId(profile.userId);
         // setTimeout(() => {
         console.log("app.js profile name, userid line103 ========>", profileName, userId);
         // }, 3000)
@@ -173,7 +173,7 @@ function App() {
     // getUserId();
     console.log("inside sendJoke", userId)
 
-    fetch(`/joke?userId=${userId}`).then((res) =>
+    fetch(`/joke?userId=${localStorage.getItem("profile").userId}`).then((res) =>
       console.log("THIS IS A RESPONSE FOR JOKES!!------>", JSON.stringify(res.data))
     );
   }
@@ -182,7 +182,7 @@ function App() {
   function sendCovidStatus() {
     getUserId();
     console.log("inside CovidStatus", userId)
-    fetch(`/covid?userId=${userId}`).then((res) =>
+    fetch(`/covid?userId=${localStorage.getItem("profile").userId}`).then((res) =>
       console.log("THIS IS A RESPONSE FOR COVID!!------>", res)
     );
   }
@@ -190,14 +190,14 @@ function App() {
   function sendFortune() {
     getUserId();
     console.log("***inside sendFortune ****", userId);
-    fetch(`/fortune?userId=${userId}`).then((res) =>
+    fetch(`/fortune?userId=${localStorage.getItem("profile").userId}`).then((res) =>
       console.log("THIS IS A RESPONSE FOR fortune !!------>", res)
     );
   }
 
   function sendNews () {
     getUserId();
-    fetch(`/news?userId=${userId}`).then((res) =>
+    fetch(`/news?userId=${localStorage.getItem("profile").userId}`).then((res) =>
     console.log("THIS IS A RESPONSE FOR news !!------>", res)
   );
   }
@@ -206,8 +206,8 @@ function App() {
   // let test = false;
 
   function Buttons() {
-    // if(isLoggedIn) {
-      return ( 
+    if(window.liff.isLoggedIn()) {
+      return (
       <>
       <div className="buttonRow">
       <button id="scanQrCodeButton" className="liffLoginButton" onClick={() => sendCovidStatus()}>
@@ -221,14 +221,17 @@ function App() {
       </button>
       <button id="sendMessageButton" className="liffLoginButton" onClick={() => sendNews()}>
         Get News
-      </button> 
+      </button>
     </div>
     {/* <div className="buttonRow">
     <button id="getAccessToken" className="liffLoginButton">Get Access Token</button>
     <button id="getProfileButton" className="liffLoginButton">Get Profile</button>
     </div> */}
     </>)
-    } 
+    } else {
+     return  <h1>please login first</h1>
+    }
+  }
     // else {
     //  return  <h1>please login first</h1>
     // }
