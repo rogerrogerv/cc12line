@@ -46,10 +46,10 @@ app.get("/covid", cors(), async function (req, res) {
       userId
     ],
     [
-      {
-        type: "text",
-        text: userId ,
-      },
+      // {
+      //   type: "text",
+      //   text: userId ,
+      // },
       {
         type: "text",
         text: covidReport,
