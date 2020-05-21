@@ -2,7 +2,7 @@
 //  Get your ♋ horoscope ♍
 import React from "react";
 
-export const Horoscope = (sign, day) => {
+export default async function Horoscope(sign, day){
 
   // const signType = {
   //   ARIES: "aries",
@@ -33,7 +33,7 @@ export const Horoscope = (sign, day) => {
     json: {}
   }
 
-  fetch(URL, {
+  await fetch(URL, {
     method: "POST"
     })
     .then(response => response.json())

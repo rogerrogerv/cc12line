@@ -2,25 +2,23 @@ import React, { useState, useEffect, useRef } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import icon from "./img/icon.png";
-import horoscope from "./horoscope"
+import phone from "./img/phone_image.png";
+// import Horoscope from "./horoscope"
 
 function App() {
-
-  //To Do: properly hook up horoscope component line:165
-  let sign="virgo"
-  let day="today"
-  // ^^ the above is for the horoscope component line:165
+  let myLiffId = "1654236980-8Pzx0pWj"
 
   const [userId, setUserId] = useState("");
 
+  //this is just for testing. will delete this later
+  // const [fakeStatus, setFakeStatus] = useState(true);
+
+
   useEffect(() => {
     initialize();
+   // getUserId();
   }, []);
 
-
-  function sendMessages() {
-    fetch("/send-messages", { mode: "cors" }).then((res) => console.log(res));
-  }
 
   function initialize() {
     let myLiffId = "";
@@ -51,6 +49,7 @@ function App() {
 
   function initializeLiff(myLiffId) {
     console.log("myLIffid--------->", myLiffId);
+    console.log("Is user logged in????", window.liff.isLoggedIn)
     window.liff
       .init({
         liffId: myLiffId,
@@ -84,17 +83,17 @@ function App() {
   }
 
   function loginClick() {
+
     if (!window.liff.isLoggedIn()) {
       console.log("loginClick -> window.liff.isLoggedIn()******", window.liff.isLoggedIn())
       // set `redirectUri` to redirect the user to a URL other than the front page of your LIFF app.
      
-      //window.liff.login({ redirectUri: "http://localhost:3000" });
+      // window.liff.login({ redirectUri: "http://localhost:9000" });
       console.log("Before login*******")
       window.liff.login();
       console.log("After login****")
       getUserId();
       console.log("After login getuserID()******")
-      
     }
   }
 
@@ -114,22 +113,90 @@ function App() {
       });
   }
 
+  function time(){
+    // Set interval for checking
+
+    var date = new Date();
+    // Create a Date object to find out what time it is
+    // if(date.getHours() === 0 && date.getMinutes() === 38 && date.getSeconds() === 0){
+    if(date.getSeconds() === 0){
+      // Check the time
+      console.log("now is", date);
+      // sendMessages();
+  }}
+
+  let interval;
+  // window.clearInterval(interval)
+  window.setInterval(time, 1000);
+
+  function sendMessages() {
+    getUserId();
+    fetch(`/send-messages?userId=${userId}`).then((res) => 
+    console.log("THIS IS A RESPONSE FOR MESSAGES!!------>", res));
+  }
+
   function sendJoke() {
     getUserId();
     console.log("inside sendJoke", userId)
 
-    fetch(`/send-joke?userId=${userId}`).then((res) =>
+    fetch(`/joke?userId=${userId}`).then((res) =>
       console.log("THIS IS A RESPONSE FOR JOKES!!------>", JSON.stringify(res.data))
     );
   }
 
 
-  function getCovidStatus() {
+  function sendCovidStatus() {
     getUserId();
     console.log("inside CovidStatus", userId)
-    fetch(`/get-covid-status?userId=${userId}`).then((res) =>
+    fetch(`/covid?userId=${userId}`).then((res) =>
       console.log("THIS IS A RESPONSE FOR COVID!!------>", res)
     );
+  }
+
+  function sendFortune() {
+    getUserId();
+    console.log("***inside sendFortune ****", userId);
+    fetch(`/fortune?userId=${userId}`).then((res) =>
+      console.log("THIS IS A RESPONSE FOR fortune !!------>", res)
+    );
+  }
+
+  // function sendNews () {
+  //   getUserId();
+  //   fetch(`/news?userId=${userId}`).then((res) =>
+  //   console.log("THIS IS A RESPONSE FOR news !!------>", res)
+  // );
+  // }
+
+
+  let test = false;
+
+  function Buttons() {
+    if(!test) {
+      return ( 
+      <>
+      <div className="buttonRow">
+      <button id="scanQrCodeButton" className="liffLoginButton" onClick={() => sendCovidStatus()}>
+        Get COVID Status
+      </button>
+      <button id="sendMessageButton" className="liffLoginButton" onClick={() => sendJoke()}>
+        Get Joke
+      </button>
+      <button id="sendMessageButton" className="liffLoginButton" onClick={() => sendFortune()}>
+        Get Your Fortune
+      </button>
+      {/* <button id="sendMessageButton" className="liffLoginButton" onClick={() => sendNews()}>
+        Get News
+      </button>  */}
+    </div>
+    {/* <div className="buttonRow">
+    <button id="getAccessToken" className="liffLoginButton">Get Access Token</button>
+    <button id="getProfileButton" className="liffLoginButton">Get Profile</button>
+    </div> */}
+    </>)
+    } else {
+     return  <h1>please login first</h1>
+    }
   }
 
   return (
@@ -138,36 +205,43 @@ function App() {
       <div className={"intro-section"}>
       <p id="title">SKYRA</p>
       <img id="icon" src={icon}></img>
-      <p>Subcribe to our product to get COVID-19 stats and Dad Jokes delivered to your Line daily.</p>
+      <p>Subcribe to SKYRA to get COVID-19 stats, Dad Jokes, Fortunes and more delivered to your Line daily.</p>
       <p>Start by logging into your line account</p>
       <button className="liffLoginButton" onClick={() => loginClick()}>
             Log in
           </button>
       </div>
       <div className={"add-assistant-section"}>
-      <p>Use this QR code to add the assistant to your Line and wait for the messages!</p>
+      <p>Use this QR code to add SKYRA to your Line and wait for the messages!</p>
+      <img id="qrcode" src={phone}></img>
       <img id="qrcode" src="/151tshrj.png"></img>
-      <p>You will get a message every morning at 10:00 (JST/EST) (?)</p>
-      <p>Maybe add a screenshot here of the line message</p>
+      <p>You will get a message every morning at 10:00(JST)</p>
       </div>
         {/* <!-- ACTION BUTTONS --> */}
         <div className="buttonGroup">
-          <div className="buttonRow">
-          </div>
-          <div className="buttonRow">
-            <button id="scanQrCodeButton" className="liffLoginButton" onClick={() => getCovidStatus()}>
+          {/* <div className="buttonRow">
+          </div> */}
+          <Buttons />
+          {/* <div className="buttonRow"></div>
+            <button id="scanQrCodeButton" className="liffLoginButton" onClick={() => sendCovidStatus()}>
               Get COVID Status
             </button>
             <button id="sendMessageButton" className="liffLoginButton" onClick={() => sendJoke()}>
-              Send Joke
+              Get Joke
             </button>
-          </div>
-          <p>How about your Horoscope?</p>
-          <horoscope sign={sign} day={day}/>
-          <div className="buttonRow">
+            <button id="sendMessageButton" className="liffLoginButton" onClick={() => sendFortune()}>
+              Get Your Fortune
+            </button>
+            <button id="sendMessageButton" className="liffLoginButton" onClick={() => sendNews()}>
+              Get News
+            </button> 
+          </div> */}
+          {/* <p>How about your Horoscope?</p> */}
+          {/* <Horoscope sign={sign} day={day}/>x */}
+          {/* <div className="buttonRow">
             <button id="getAccessToken" className="liffLoginButton">Get Access Token</button>
             <button id="getProfileButton" className="liffLoginButton">Get Profile</button>
-          </div>
+          </div> */}
         </div>
         <div id="hooter">© SKYRA 2020. All rights reserved.</div>
         <div id="shareTargetPickerMessage"></div>
