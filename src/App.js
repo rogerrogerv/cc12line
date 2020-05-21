@@ -17,11 +17,10 @@ function App() {
 
   useEffect(() => {
     initialize();
-   // getUserId();
-  }, []);
 
-  useEffect(() => {
-    Buttons();
+    if(window.liff.isLoggedIn){
+      getUserId()
+    }
   }, []);
 
 
@@ -132,8 +131,9 @@ function App() {
       .then((profile) => {
         const profileName = profile.displayName;
         setUserId(profile.userId);
+        // setIsLoggedIn(window.liff.isLoggedIn());
         // setTimeout(() => {
-          console.log("app.js profile name, userid line103 ========>", profileName, userId);
+        console.log("app.js profile name, userid line103 ========>", profileName, userId);
         // }, 3000)
 
       })
