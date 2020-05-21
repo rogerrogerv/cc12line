@@ -17,13 +17,14 @@ function App() {
 
   useEffect(() => {
     initialize();
-
-    setTimeout(() => {
-      if(window.liff.isLoggedIn()){
-        getUserId();
-      }
-    }, 10000)
+   // getUserId();
   }, []);
+
+  useEffect(() => {
+    if (window.liff.isLoggedIn()) {
+      getUserId()
+    }
+  }, [isLoggedIn]);
 
 
   function initialize() {
@@ -64,9 +65,9 @@ function App() {
       .then(() => {
         // start to use LIFF's api
         initializeApp();
-
         const idToken = window.liff.getDecodedIDToken();
         console.log("app.js line68 initializeLiff -> idToken*****", idToken);
+        
       })
       .catch((err) => {
         console.log(err);
@@ -83,32 +84,9 @@ function App() {
     // check if the user is logged in/out, and disable inappropriate button
     if (window.liff.isLoggedIn()) {
       // document.getElementById('liffLoginButton').disabled = true;
-      function Button () {return (
-        <>
-        <div className="buttonRow">
-        <button id="scanQrCodeButton" className="liffLoginButton" onClick={() => sendCovidStatus()}>
-          Get COVID Status
-        </button>
-        <button id="sendMessageButton" className="liffLoginButton" onClick={() => sendJoke()}>
-          Get Joke
-        </button>
-        <button id="sendMessageButton" className="liffLoginButton" onClick={() => sendFortune()}>
-          Get Your Fortune
-        </button>
-        {/* <button id="sendMessageButton" className="liffLoginButton" onClick={() => sendNews()}>
-          Get News
-        </button>  */}
-      </div>
-      {/* <div className="buttonRow">
-      <button id="getAccessToken" className="liffLoginButton">Get Access Token</button>
-      <button id="getProfileButton" className="liffLoginButton">Get Profile</button>
-      </div> */}
-      </>)
-      }
+    } else {
+      // document.getElementById('liffLogoutButton').disabled = true;
     }
-    // } else {
-    //   // document.getElementById('liffLogoutButton').disabled = true;
-    // }
   }
 
   function loginClick() {
@@ -116,19 +94,15 @@ function App() {
     if (!window.liff.isLoggedIn()) {
       console.log("loginClick -> window.liff.isLoggedIn()******", window.liff.isLoggedIn())
       // set `redirectUri` to redirect the user to a URL other than the front page of your LIFF app.
-     
+      setIsLoggedIn(true);
       // window.liff.login({ redirectUri: "http://localhost:9000" });
       console.log("Before login*******")
       window.liff.login();
       console.log("After login****")
-      // getUserId();
-      // console.log("After login getuserID()******")
-      // setIsLoggedIn(true);
     }
   }
 
   function getUserId() {
-    if(window.liff.isLoggedIn){
     window.liff
       .getProfile()
       .then((profile) => {
@@ -137,14 +111,13 @@ function App() {
         setIsLoggedIn(window.liff.isLoggedIn());
         // setUserId(profile.userId);
         // setTimeout(() => {
-        console.log("app.js profile name, userid line103 ========>", profileName, userId);
+          console.log("app.js profile name, userid line103 ========>", profileName, userId);
         // }, 3000)
 
       })
       .catch((err) => {
         console.log("error", err);
       });
-    }
   }
 
   function time(){
@@ -170,7 +143,7 @@ function App() {
   }
 
   function sendJoke() {
-    // getUserId();
+    getUserId();
     console.log("inside sendJoke", userId)
 
     fetch(`/joke?userId=${localStorage.getItem("profile").userId}`).then((res) =>
@@ -194,6 +167,7 @@ function App() {
       console.log("THIS IS A RESPONSE FOR fortune !!------>", res)
     );
   }
+
 
   function sendNews () {
     getUserId();
@@ -221,7 +195,7 @@ function App() {
       </button>
       <button id="sendMessageButton" className="liffLoginButton" onClick={() => sendNews()}>
         Get News
-      </button>
+      </button> 
     </div>
     {/* <div className="buttonRow">
     <button id="getAccessToken" className="liffLoginButton">Get Access Token</button>
@@ -240,22 +214,20 @@ function App() {
   return (
     <div className="App">
       <div id="liffAppContent">
-      <div className="intro-section">
-        <div className="title-wrapper">
-        <p id="title">SKYRA</p>
-        </div>
-        <img id="icon" src={icon}></img>
-        <p className="marketInfo">Subcribe to SKYRA to get COVID-19 stats, Dad Jokes, Fortunes and more delivered to your Line daily.</p>
-        <p className="marketInfo">Start by logging into your line account</p>
-        <button className="liffLoginButton" onClick={() => loginClick()}>
-              Log in
-        </button>
+      <div className={"intro-section"}>
+      <p id="title">SKYRA</p>
+      <img id="icon" src={icon}></img>
+      <p>Subcribe to SKYRA to get COVID-19 stats, Dad Jokes, Fortunes and more delivered to your Line daily.</p>
+      <p>Start by logging into your line account</p>
+      <button className="liffLoginButton" onClick={() => loginClick()}>
+            Log in
+          </button>
       </div>
       <div className={"add-assistant-section"}>
-      <p className="market-subInfo">Use this QR code to add SKYRA to your Line and wait for the messages!</p>
-      <img className="phone_pic" alt="phone_pic" src={phone}></img>
-      <img className="qrcode" alt="qrcode_pic" src="/151tshrj.png"></img>
-      <p className="market-subInfo">You will get a message every morning at 10:00(JST)</p>
+      <p>Use this QR code to add SKYRA to your Line and wait for the messages!</p>
+      <img id="qrcode" src={phone}></img>
+      <img id="qrcode" src="/151tshrj.png"></img>
+      <p>You will get a message every morning at 10:00(JST)</p>
       </div>
         {/* <!-- ACTION BUTTONS --> */}
         <div className="buttonGroup">
@@ -386,7 +358,7 @@ function App() {
         <p>
           LIFF initialization can fail if a user clicks "Cancel" on the "Grant
           permission" screen, or if an error occurs in the process of{" "}
-          <code>window.liff.init()</code>.
+          <code>liff.init()</code>.
         </p>
       </div>
       {/* <!-- NODE.JS LIFF ID ERROR --> */}
