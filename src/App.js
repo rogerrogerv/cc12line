@@ -18,13 +18,11 @@ function App() {
   useEffect(() => {
     initialize();
 
-    setUserId(localStorage.getItem("profile").userId);
-
-    setTimeout(() => {
-      if(window.liff.isLoggedIn){
-        getUserId();
-      }
-    }, 10000)
+    // setTimeout(() => {
+    if(window.liff.isLoggedIn()){
+      getUserId();
+    }
+    // }, 10000)
 
   }, []);
 
@@ -136,8 +134,9 @@ function App() {
       .getProfile()
       .then((profile) => {
         const profileName = profile.displayName;
-        localStorage.setItem("profile", profile)
-        // setIsLoggedIn(window.liff.isLoggedIn());
+        // localStorage.setItem("profile", profile)
+        setIsLoggedIn(window.liff.isLoggedIn());
+        setUserId(profile.userId);
         // setTimeout(() => {
         console.log("app.js profile name, userid line103 ========>", profileName, userId);
         // }, 3000)
