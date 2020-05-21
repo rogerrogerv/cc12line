@@ -20,6 +20,10 @@ function App() {
    // getUserId();
   }, []);
 
+  useEffect(() => {
+    Buttons();
+  }, []);
+
 
   function initialize() {
     let myLiffId = "";
@@ -124,7 +128,7 @@ function App() {
     if(date.getSeconds() === 0){
       // Check the time
       console.log("now is", date);
-      sendMessages();
+      // sendMessages();
   }}
 
   let interval;
