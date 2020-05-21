@@ -216,7 +216,7 @@ function App() {
       <img id="icon" src={icon}></img>
       <p>Subcribe to SKYRA to get COVID-19 stats, Dad Jokes, Fortunes and more delivered to your Line daily.</p>
       <p>Start by logging into your line account</p>
-      <button className="liffLoginButton" onClick={() => await loginClick()}>
+      <button className="liffLoginButton" onClick={() => loginClick()}>
             Log in
           </button>
       </div>
