@@ -117,6 +117,7 @@ function App() {
           console.log("error", err);
         });
     }
+  }
 
     function time(){
       // Set interval for checking
@@ -363,6 +364,5 @@ function App() {
       </div>
     );
   }
-}
 
 export default App;
