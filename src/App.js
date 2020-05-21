@@ -190,12 +190,12 @@ function App() {
     );
   }
 
-  // function sendNews () {
-  //   getUserId();
-  //   fetch(`/news?userId=${userId}`).then((res) =>
-  //   console.log("THIS IS A RESPONSE FOR news !!------>", res)
-  // );
-  // }
+  function sendNews () {
+    getUserId();
+    fetch(`/news?userId=${userId}`).then((res) =>
+    console.log("THIS IS A RESPONSE FOR news !!------>", res)
+  );
+  }
 
 
   // let test = false;
@@ -214,9 +214,9 @@ function App() {
       <button id="sendMessageButton" className="liffLoginButton" onClick={() => sendFortune()}>
         Get Your Fortune
       </button>
-      {/* <button id="sendMessageButton" className="liffLoginButton" onClick={() => sendNews()}>
+      <button id="sendMessageButton" className="liffLoginButton" onClick={() => sendNews()}>
         Get News
-      </button>  */}
+      </button> 
     </div>
     {/* <div className="buttonRow">
     <button id="getAccessToken" className="liffLoginButton">Get Access Token</button>

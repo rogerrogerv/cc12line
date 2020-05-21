@@ -131,7 +131,8 @@ app.get("/fortune", cors(), async function(req, res) {
   const mood = data.mood;
   const description = data.description;
 
-  let fortune = `Your fortune for ${curDate} is as follows: Your lucky number is ${luckyNum}, lucky time is ${luckyTime} and lucky colour is ${colour}. ${description} and don't forget to be ${mood}.`
+  let fortune = `Your fortune for ${curDate} is as follows: Your lucky number is ${luckyNum}, lucky time is ${luckyTime} and lucky colour is ${colour}.
+    ${description} and don't forget to be ${mood}.`
 
 
   client.multicast(
@@ -174,42 +175,74 @@ app.get("/send-messages", cors(), function (req, res) {
 });
 
 app.get("/news", cors(), async function (req, res) {
-  let news = "";
   let userId = req.query.userId;
 
   var url = 'http://newsapi.org/v2/top-headlines?' +
           'sources=bbc-news&' +
           'apiKey=ba6018a0c29b4508be8a24c16e933a85';
 
+  let title1, description1, url1, title2, description2, url2,
+    title3, description3, url3;
+
+  function luckyNumber() {
+    let min = Math.ceil(0);
+    let max = Math.floor(9);
+    return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
+  }
+
+  let lucky1 = luckyNumber();
+  let lucky2 = luckyNumber();
+  let lucky3 = luckyNumber();
+
   await axios
     .get(url)
     .then((res) => {
-      console.log(res.data)
       return res.data;
     })
     .then((response) => {
-      console.log("index.js LINE 190 await axios 2nd THEN *****", response);
+      title1 = response.articles[lucky1].title;
+      description1 = response.articles[lucky1].description;
+      url1 = response.articles[lucky1].url;
+      title2 = response.articles[lucky2].title;
+      description2 = response.articles[lucky2].description;
+      url2 = response.articles[lucky2].url;
+      title3 = response.articles[lucky3].title;
+      description3 = response.articles[lucky3].description;
+      url3 = response.articles[lucky3].url;
     })
     .catch((err) => {
       console.error(err);
     });
 
-  // client.multicast(
-  //   [
-  //     // process.env.USER_ID_Y,
-  //     // // process.env.USER_ID_S,
-  //     // process.env.USER_ID_K,
-  //     // process.env.USER_ID_A,
-  //     // // process.env.USER_ID_R,
-  //     userId
-  //   ],
-  //   [
-  //     {
-  //       type: "text",
-  //       text: `${userId}, check this out: ${joke}`,
-  //     },
-  //   ]
-  // );
+    let news = `${title1}
+    ${description1}
+    ${url1}
+    
+    ${title2}
+    ${description2}
+    ${url2}
+  
+    ${title3}
+    ${description3}
+    ${url3}
+    `;
+
+  client.multicast(
+    [
+      // process.env.USER_ID_Y,
+      // // process.env.USER_ID_S,
+      // process.env.USER_ID_K,
+      // process.env.USER_ID_A,
+      // // process.env.USER_ID_R,
+      userId
+    ],
+    [
+      {
+        type: "text",
+        text: news
+      },
+    ]
+  );
   res.json("success");
 });
 
