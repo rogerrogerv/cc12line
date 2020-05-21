@@ -142,7 +142,7 @@ function App() {
   }
 
   function sendJoke() {
-    getUserId();
+    // getUserId();
     console.log("inside sendJoke", userId)
 
     fetch(`/joke?userId=${userId}`).then((res) =>
@@ -178,7 +178,7 @@ function App() {
   // let test = false;
 
   function Buttons() {
-    if(isLoggedIn) {
+    // if(isLoggedIn) {
       return ( 
       <>
       <div className="buttonRow">
@@ -200,9 +200,10 @@ function App() {
     <button id="getProfileButton" className="liffLoginButton">Get Profile</button>
     </div> */}
     </>)
-    } else {
-     return  <h1>please login first</h1>
-    }
+    } 
+    // else {
+    //  return  <h1>please login first</h1>
+    // }
   }
 
   return (
