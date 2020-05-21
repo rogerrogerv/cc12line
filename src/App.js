@@ -9,6 +9,7 @@ function App() {
   // let myLiffId = "1654236980-8Pzx0pWj"
 
   const [userId, setUserId] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   //this is just for testing. will delete this later
   // const [fakeStatus, setFakeStatus] = useState(true);
@@ -17,6 +18,10 @@ function App() {
   useEffect(() => {
     initialize();
    // getUserId();
+  }, []);
+
+  useEffect(() => {
+    Buttons();
   }, []);
 
 
@@ -117,6 +122,7 @@ function App() {
       console.log("After login****")
       getUserId();
       console.log("After login getuserID()******")
+      setIsLoggedIn(true);
     }
   }
 
@@ -159,7 +165,7 @@ function App() {
   }
 
   function sendJoke() {
-    getUserId();
+    // getUserId();
     console.log("inside sendJoke", userId)
 
     fetch(`/joke?userId=${userId}`).then((res) =>
@@ -194,32 +200,33 @@ function App() {
 
   // let test = false;
 
-  // function Buttons() {
-  //   if(window.liff.isLoggedIn()) {
-  //     return ( 
-  //     <>
-  //     <div className="buttonRow">
-  //     <button id="scanQrCodeButton" className="liffLoginButton" onClick={() => sendCovidStatus()}>
-  //       Get COVID Status
-  //     </button>
-  //     <button id="sendMessageButton" className="liffLoginButton" onClick={() => sendJoke()}>
-  //       Get Joke
-  //     </button>
-  //     <button id="sendMessageButton" className="liffLoginButton" onClick={() => sendFortune()}>
-  //       Get Your Fortune
-  //     </button>
-  //     {/* <button id="sendMessageButton" className="liffLoginButton" onClick={() => sendNews()}>
-  //       Get News
-  //     </button>  */}
-  //   </div>
-  //   {/* <div className="buttonRow">
-  //   <button id="getAccessToken" className="liffLoginButton">Get Access Token</button>
-  //   <button id="getProfileButton" className="liffLoginButton">Get Profile</button>
-  //   </div> */}
-  //   </>)
-  //   } else {
-  //    return  <h1>please login first</h1>
-  //   }
+  function Buttons() {
+    // if(isLoggedIn) {
+      return ( 
+      <>
+      <div className="buttonRow">
+      <button id="scanQrCodeButton" className="liffLoginButton" onClick={() => sendCovidStatus()}>
+        Get COVID Status
+      </button>
+      <button id="sendMessageButton" className="liffLoginButton" onClick={() => sendJoke()}>
+        Get Joke
+      </button>
+      <button id="sendMessageButton" className="liffLoginButton" onClick={() => sendFortune()}>
+        Get Your Fortune
+      </button>
+      {/* <button id="sendMessageButton" className="liffLoginButton" onClick={() => sendNews()}>
+        Get News
+      </button>  */}
+    </div>
+    {/* <div className="buttonRow">
+    <button id="getAccessToken" className="liffLoginButton">Get Access Token</button>
+    <button id="getProfileButton" className="liffLoginButton">Get Profile</button>
+    </div> */}
+    </>)
+    } 
+    // else {
+    //  return  <h1>please login first</h1>
+    // }
   // }
 
   return (
@@ -246,7 +253,7 @@ function App() {
         <div className="buttonGroup">
           {/* <div className="buttonRow">
           </div> */}
-          {/* <Buttons /> */}
+          <Buttons />
           {/* <div className="buttonRow"></div>
             <button id="scanQrCodeButton" className="liffLoginButton" onClick={() => sendCovidStatus()}>
               Get COVID Status
