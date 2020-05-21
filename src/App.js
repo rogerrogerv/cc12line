@@ -77,9 +77,34 @@ function App() {
     // check if the user is logged in/out, and disable inappropriate button
     if (window.liff.isLoggedIn()) {
       // document.getElementById('liffLoginButton').disabled = true;
-    } else {
-      // document.getElementById('liffLogoutButton').disabled = true;
+      function Button () {return ( 
+        <>
+        <div className="buttonRow">
+        <button id="scanQrCodeButton" className="liffLoginButton" onClick={() => sendCovidStatus()}>
+          Get COVID Status
+        </button>
+        <button id="sendMessageButton" className="liffLoginButton" onClick={() => sendJoke()}>
+          Get Joke
+        </button>
+        <button id="sendMessageButton" className="liffLoginButton" onClick={() => sendFortune()}>
+          Get Your Fortune
+        </button>
+        {/* <button id="sendMessageButton" className="liffLoginButton" onClick={() => sendNews()}>
+          Get News
+        </button>  */}
+      </div>
+      {/* <div className="buttonRow">
+      <button id="getAccessToken" className="liffLoginButton">Get Access Token</button>
+      <button id="getProfileButton" className="liffLoginButton">Get Profile</button>
+      </div> */}
+      </>)
+      } else {
+       return  <h1>please login first</h1>
+      }
     }
+    // } else {
+    //   // document.getElementById('liffLogoutButton').disabled = true;
+    // }
   }
 
   function loginClick() {
@@ -169,35 +194,35 @@ function App() {
   // }
 
 
-  let test = false;
+  // let test = false;
 
-  function Buttons() {
-    if(window.liff.isLoggedIn()) {
-      return ( 
-      <>
-      <div className="buttonRow">
-      <button id="scanQrCodeButton" className="liffLoginButton" onClick={() => sendCovidStatus()}>
-        Get COVID Status
-      </button>
-      <button id="sendMessageButton" className="liffLoginButton" onClick={() => sendJoke()}>
-        Get Joke
-      </button>
-      <button id="sendMessageButton" className="liffLoginButton" onClick={() => sendFortune()}>
-        Get Your Fortune
-      </button>
-      {/* <button id="sendMessageButton" className="liffLoginButton" onClick={() => sendNews()}>
-        Get News
-      </button>  */}
-    </div>
-    {/* <div className="buttonRow">
-    <button id="getAccessToken" className="liffLoginButton">Get Access Token</button>
-    <button id="getProfileButton" className="liffLoginButton">Get Profile</button>
-    </div> */}
-    </>)
-    } else {
-     return  <h1>please login first</h1>
-    }
-  }
+  // function Buttons() {
+  //   if(window.liff.isLoggedIn()) {
+  //     return ( 
+  //     <>
+  //     <div className="buttonRow">
+  //     <button id="scanQrCodeButton" className="liffLoginButton" onClick={() => sendCovidStatus()}>
+  //       Get COVID Status
+  //     </button>
+  //     <button id="sendMessageButton" className="liffLoginButton" onClick={() => sendJoke()}>
+  //       Get Joke
+  //     </button>
+  //     <button id="sendMessageButton" className="liffLoginButton" onClick={() => sendFortune()}>
+  //       Get Your Fortune
+  //     </button>
+  //     {/* <button id="sendMessageButton" className="liffLoginButton" onClick={() => sendNews()}>
+  //       Get News
+  //     </button>  */}
+  //   </div>
+  //   {/* <div className="buttonRow">
+  //   <button id="getAccessToken" className="liffLoginButton">Get Access Token</button>
+  //   <button id="getProfileButton" className="liffLoginButton">Get Profile</button>
+  //   </div> */}
+  //   </>)
+  //   } else {
+  //    return  <h1>please login first</h1>
+  //   }
+  // }
 
   return (
     <div className="App">
@@ -346,7 +371,7 @@ function App() {
         <p>
           LIFF initialization can fail if a user clicks "Cancel" on the "Grant
           permission" screen, or if an error occurs in the process of{" "}
-          <code>liff.init()</code>.
+          <code>window.liff.init()</code>.
         </p>
       </div>
       {/* <!-- NODE.JS LIFF ID ERROR --> */}
