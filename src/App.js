@@ -125,7 +125,7 @@ function App() {
   }
 
   function getUserId() {
-    if(window.liff.isLoggedIn){
+    if(window.liff.isLoggedIn()){
     window.liff
       .getProfile()
       .then((profile) => {
