@@ -82,9 +82,32 @@ function App() {
     // check if the user is logged in/out, and disable inappropriate button
     if (window.liff.isLoggedIn()) {
       // document.getElementById('liffLoginButton').disabled = true;
-    } else {
-      // document.getElementById('liffLogoutButton').disabled = true;
+      function Button () {return ( 
+        <>
+        <div className="buttonRow">
+        <button id="scanQrCodeButton" className="liffLoginButton" onClick={() => sendCovidStatus()}>
+          Get COVID Status
+        </button>
+        <button id="sendMessageButton" className="liffLoginButton" onClick={() => sendJoke()}>
+          Get Joke
+        </button>
+        <button id="sendMessageButton" className="liffLoginButton" onClick={() => sendFortune()}>
+          Get Your Fortune
+        </button>
+        {/* <button id="sendMessageButton" className="liffLoginButton" onClick={() => sendNews()}>
+          Get News
+        </button>  */}
+      </div>
+      {/* <div className="buttonRow">
+      <button id="getAccessToken" className="liffLoginButton">Get Access Token</button>
+      <button id="getProfileButton" className="liffLoginButton">Get Profile</button>
+      </div> */}
+      </>)
+      }
     }
+    // } else {
+    //   // document.getElementById('liffLogoutButton').disabled = true;
+    // }
   }
 
   function loginClick() {
@@ -209,20 +232,22 @@ function App() {
   return (
     <div className="App">
       <div id="liffAppContent">
-      <div className={"intro-section"}>
-      <p id="title">SKYRA</p>
-      <img id="icon" src={icon}></img>
-      <p>Subcribe to SKYRA to get COVID-19 stats, Dad Jokes, Fortunes and more delivered to your Line daily.</p>
-      <p>Start by logging into your line account</p>
-      <button className="liffLoginButton" onClick={() => loginClick()}>
-            Log in
-          </button>
+      <div className="intro-section">
+        <div className="title-wrapper">
+        <p id="title">SKYRA</p>
+        </div>
+        <img id="icon" src={icon}></img>
+        <p className="marketInfo">Subcribe to SKYRA to get COVID-19 stats, Dad Jokes, Fortunes and more delivered to your Line daily.</p>
+        <p className="marketInfo">Start by logging into your line account</p>
+        <button className="liffLoginButton" onClick={() => loginClick()}>
+              Log in
+        </button>
       </div>
       <div className={"add-assistant-section"}>
-      <p>Use this QR code to add SKYRA to your Line and wait for the messages!</p>
-      <img id="qrcode" src={phone}></img>
-      <img id="qrcode" src="/151tshrj.png"></img>
-      <p>You will get a message every morning at 10:00(JST)</p>
+      <p className="market-subInfo">Use this QR code to add SKYRA to your Line and wait for the messages!</p>
+      <img className="phone_pic" alt="phone_pic" src={phone}></img>
+      <img className="qrcode" alt="qrcode_pic" src="/151tshrj.png"></img>
+      <p className="market-subInfo">You will get a message every morning at 10:00(JST)</p>
       </div>
         {/* <!-- ACTION BUTTONS --> */}
         <div className="buttonGroup">
@@ -353,7 +378,7 @@ function App() {
         <p>
           LIFF initialization can fail if a user clicks "Cancel" on the "Grant
           permission" screen, or if an error occurs in the process of{" "}
-          <code>liff.init()</code>.
+          <code>window.liff.init()</code>.
         </p>
       </div>
       {/* <!-- NODE.JS LIFF ID ERROR --> */}
