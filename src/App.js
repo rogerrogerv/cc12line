@@ -9,6 +9,7 @@ function App() {
   // let myLiffId = "1654236980-8Pzx0pWj"
 
   const [userId, setUserId] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   //this is just for testing. will delete this later
   // const [fakeStatus, setFakeStatus] = useState(true);
@@ -94,6 +95,7 @@ function App() {
       console.log("After login****")
       getUserId();
       console.log("After login getuserID()******")
+      setIsLoggedIn(true);
     }
   }
 
@@ -169,10 +171,10 @@ function App() {
   // }
 
 
-  let test = false;
+  // let test = false;
 
   function Buttons() {
-    if(window.liff.isLoggedIn()) {
+    if(isLoggedIn) {
       return ( 
       <>
       <div className="buttonRow">
