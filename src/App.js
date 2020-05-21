@@ -126,6 +126,7 @@ function App() {
   }
 
   function getUserId() {
+    if(window.liff.isLoggedIn){
     window.liff
       .getProfile()
       .then((profile) => {
@@ -140,6 +141,7 @@ function App() {
       .catch((err) => {
         console.log("error", err);
       });
+    }
   }
 
   function time(){
