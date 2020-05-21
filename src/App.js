@@ -176,7 +176,7 @@ function App() {
     }
 
     function Buttons() {
-      if(window.liff.isLoggedIn()) {
+      if(isLoggedIn) {
         return (
         <>
         <div className="buttonRow">
