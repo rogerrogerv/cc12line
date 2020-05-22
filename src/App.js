@@ -3,10 +3,17 @@ import logo from "./logo.svg";
 import "./App.css";
 import icon from "./img/icon.png";
 import phone from "./img/phone_image.png";
+import ReactGA from 'react-ga';
 // import Horoscope from "./horoscope"
 
 function App() {
     // let myLiffId = "1654236980-8Pzx0pWj"
+    // useEffect(() => {
+    //   const { pathname } = this.props.location;
+    //   ReactGA.set({ page: pathname });
+    //   ReactGA.pageview(pathname);
+    // }, [])
+    
 
     const [userId, setUserId] = useState("");
     const [isLoggedIn, setIsLoggedIn] = useState(false);
