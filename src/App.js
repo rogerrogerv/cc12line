@@ -22,7 +22,7 @@ function App() {
           getUserId();
           getUserId();
         }
-      }, 15000)
+      }, 10000)
     }, []);
 
 
