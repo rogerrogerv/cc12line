@@ -1,14 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap");
 
 .intro-section {
   position: relative;
-  background-color: #EF9B90;
+  background-color: #ef9b90;
   padding: 40px 30px;
   color: white;
   font-size: 1.3em;
   font-weight: bold;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
 }
 
 .add-assistant-section {
@@ -16,19 +16,19 @@
 }
 
 .liffLoginButton {
- padding: 10px 30px;
- background-color: #EF9B90;
- border-radius: 25px;
- border: 2px solid white;
- color: white;
- font-size: 1.3em;
- font-weight: bold;
+  padding: 10px 30px;
+  background-color: #ef9b90;
+  border-radius: 25px;
+  border: 2px solid white;
+  color: white;
+  font-size: 1.3em;
+  font-weight: bold;
 }
 
 .liffLoginButton:hover {
   background-color: #fff;
-  border-color: #EF9B90;
-  color: #EF9B90;
+  border-color: #ef9b90;
+  color: #ef9b90;
   cursor: pointer;
 }
 
@@ -51,7 +51,9 @@ th {
   text-align: center;
 }
 
-table, th, td {
+table,
+th,
+td {
   border: 1px solid black;
 }
 
@@ -62,6 +64,14 @@ img {
 
 button {
   margin: 4px;
+}
+
+button:focus {
+  outline: none;
+}
+
+.buttonRow {
+  margin: 20px;
 }
 
 #code-block {
@@ -102,7 +112,7 @@ button {
   display: none;
 }
 
-.phone_pic{
+.phone_pic {
   width: 13%;
 }
 
@@ -117,7 +127,7 @@ img {
 
 #title {
   font-size: 4em;
-  font-family: 'Baloo Chettan 2', cursive;
+  font-family: "Baloo Chettan 2", cursive;
   margin-left: 0;
   margin-top: 0;
   margin-bottom: 0;
@@ -130,8 +140,9 @@ p {
   color: white;
 }
 
-.market-subInfo{
+.market-subInfo {
   padding-top: 15px;
+  font-family: "Source Sans Pro", sans-serif;
 }
 
 #hooter {
@@ -146,77 +157,76 @@ p {
 }
 
 /* Big table to 1200px(width smaller than the 1140px row */
-@media only screen and (max-width: 1200px){
-
+@media only screen and (max-width: 1200px) {
 }
 
 /*Small tablet to big tablet from: 768px - 1023px*/
 
-@media only screen and (max-width: 1023px){
-
+@media only screen and (max-width: 1023px) {
 }
 
 /*Small phones to small tablet from: 481px - 767px*/
 
-@media only screen and (max-width: 767px){
-
+@media only screen and (max-width: 767px) {
 }
 
 /*Small phones from :0 - 480px*/
 
-@media only screen and (max-width: 480px){
-
-  .add-assistant-section{
-
+@media only screen and (max-width: 480px) {
+  .add-assistant-section {
     background-color: rgb(169, 173, 182);
     /* background-color: #707E97; */
     padding: 10px;
   }
 
-  .plzlogin{
+  .plzlogin {
     text-transform: uppercase;
   }
 
-  #icon{
+  #icon {
     max-width: 40%;
     /* margin-top: -10px; */
     position: absolute;
-    top:5%;
-    right:32%;
-
+    top: 5%;
+    right: 32%;
   }
 
-  .title-wrapper{
+  .title-wrapper {
     display: inline-block;
-    padding-top:70px;
-    padding-right:66px ;
+    padding-top: 70px;
+    padding-right: 66px;
     /* text-align: center; */
   }
 
-  .marketInfo{
+  .marketInfo {
     font-size: 25px;
   }
-  
-  .market-subInfo{
+
+  .market-subInfo {
     font-size: 18px;
     color: #fff;
   }
   #title {
     font-size: 4em;
-    font-family: 'Baloo Chettan 2', cursive;
+    font-family: "Baloo Chettan 2", cursive;
     width: 100px;
   }
 
-  .phone_pic{
+  .phone_pic {
     width: 25%;
-  }
-  
-  .qrcode {
-    width: 25%;
-    transform: translate(10% ,-30%);
   }
 
-  #hooter{
-    background-color:#434c5e;
+  .qrcode {
+    width: 25%;
+    transform: translate(10%, -30%);
+  }
+
+  button {
+    margin: 4px;
+    width: 100%;
+  }
+
+  #hooter {
+    background-color: #434c5e;
   }
 }
