@@ -134,15 +134,12 @@ app.get("/fortune", cors(), async function (req, res) {
 app.get("/send-messages", cors(), function (req, res) {
   let userId = req.query.userId;
   console.log("IS IT SENDING MESSAGES???", userId);
-  client.multicast(
-    [userId],
-    [
-      {
-        type: "text",
-        text: `🌞Good morning!!!`,
-      },
-    ]
-  );
+  client.push(userId, [
+    {
+      type: "text",
+      text: `🌞Good morning!!!`,
+    },
+  ]);
   res.json("success");
 });
 

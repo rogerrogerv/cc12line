@@ -103,7 +103,7 @@ function App() {
       // set `redirectUri` to redirect the user to a URL other than the front page of your LIFF app
       // window.liff.login({ redirectUri: "http://localhost:3000" });
       console.log("Before login*******");
-      //window.liff.login();
+      window.liff.login();
     }
   }
 
@@ -139,7 +139,7 @@ function App() {
     if (date.getSeconds() === 0) {
       // Check the time
       console.log("now is", date);
-      // sendMessages();
+      sendMessages();
     }
   }
 
