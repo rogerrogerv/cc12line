@@ -101,7 +101,7 @@ function App() {
         window.liff.isLoggedIn()
       );
       // set `redirectUri` to redirect the user to a URL other than the front page of your LIFF app
-      // window.liff.login({ redirectUri: "http://localhost:3000" });
+      //window.liff.login({ redirectUri: "http://localhost:3000" });
       console.log("Before login*******");
       window.liff.login();
     }
@@ -139,7 +139,8 @@ function App() {
     if (date.getSeconds() === 0) {
       // Check the time
       console.log("now is", date);
-      sendMessages();
+      // sendMessages();
+      // clearInterval(intervalID);
     }
   }
 
@@ -207,35 +208,35 @@ function App() {
               className="liffLoginButton"
               onClick={() => sendNews()}
             >
-              Get News
+              Get News 📰
             </button>
             <button
               id="scanQrCodeButton"
               className="liffLoginButton"
               onClick={() => sendCovidStatus()}
             >
-              Get COVID Status
+              Get COVID Status 🦠
             </button>
             <button
               id="sendMessageButton"
               className="liffLoginButton"
               onClick={() => sendWeather()}
             >
-              Get Weather
+              Get Weather ⛅
             </button>
             <button
               id="sendMessageButton"
               className="liffLoginButton"
               onClick={() => sendFortune()}
             >
-              Get Your Fortune
+              Get Your Fortune 🔮
             </button>
             <button
               id="sendMessageButton"
               className="liffLoginButton"
               onClick={() => sendJoke()}
             >
-              Get Joke
+              Get Joke 👨🏻
             </button>
           </div>
           {/* <div className="buttonRow">
@@ -264,8 +265,8 @@ function App() {
 
           <img id="icon" src={icon}></img>
           <p className="marketInfo">
-            Subcribe to SKYRA to get COVID-19 stats, Dad Jokes, Fortunes and
-            more delivered to your LINE daily.
+            Subscribe to SKYRA to get COVID-19 stats, Dad Jokes, Fortunes and
+            more delivered to your LINE.
           </p>
           <p ref={loginText} className="marketInfo">
             Start by logging into your LINE account
@@ -285,9 +286,9 @@ function App() {
           </p>
           <img className="phone_pic" src={phone}></img>
           <img className="qrcode" src="/151tshrj.png"></img>
-          <p className="market-subInfo">
+          {/* <p className="market-subInfo">
             You will get a message every morning at 10:00(JST)
-          </p>
+          </p> */}
         </div>
         {/* <!-- ACTION BUTTONS --> */}
         <div className="buttonGroup">

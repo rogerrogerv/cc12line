@@ -163,13 +163,13 @@ app.get("/weather", cors(), async function (req, res) {
     .then((response) => {
       location = response.data.timezone;
       dailySum = response.data.daily.summary;
-      hourlySum = response.data.hourly.summary;
+      hourlySum = response.data.hourly.summary.toLowerCase();
     })
     .catch((err) => {
       console.error(err);
     });
 
-  weatherReport = `Today's weather for ${location}, ${dailySum} Then later ${hourlySum}`;
+  weatherReport = `Today's weather for Tokyo: ${dailySum} Then later ${hourlySum}`;
 
   client.multicast(
     [userId],
@@ -255,4 +255,15 @@ app.get("/news", cors(), async function (req, res) {
   res.json("success");
 });
 
-app.listen(port, () => console.log(`app listening on port ${port}!`));
+//app.listen(port, () => console.log(`app listening on port ${port}!`));
+app.listen(port, () => {
+  console.log(
+    `Starting Express server . . . . . . . . . . . \x1b[32m✔ SUCCESS!\x1b[0m`
+  );
+  console.log(`█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█`);
+  // eslint-disable-next-line prettier/prettier
+  console.log(
+    `█       \x1b[36mExpress Server is listening on port\x1b[0m ${port}        █`
+  );
+  console.log(`█▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█`);
+});
